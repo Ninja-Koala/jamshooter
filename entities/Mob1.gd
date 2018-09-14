@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://entities/Enemy.gd"
 
 # class member variables go here, for example:
 # var a = 2
@@ -7,20 +7,21 @@ const ACCELERATION_FACTOR = Vector2(15, 20)
 const MAX_SPEED = Vector2(120, 200)
 const FRICTION = Vector2(10, 10)
 
+onready var player = get_parent().get_node("Player")
+
 var move_force = Vector2(0, 0)
 var speed = Vector2(0, 0)
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	hitpoints = 10
+
+func die():
+	print("argh!")
+	destroy()
 
 func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	var player = get_parent().get_node("Player")
 	var move_unscaled = player.get_transform().get_origin()-get_transform().get_origin()
-	move_force=move_unscaled*1/move_unscaled.length()
+	move_force=move_unscaled / move_unscaled.length()
 
 func _physics_process(delta):
 	# Beschleunigung berechnen

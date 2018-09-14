@@ -18,14 +18,20 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="CollisionBox" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-scale = Vector2( 2.12492, 1.58833 )
+position = Vector2( 0.161613, -0.419851 )
+scale = Vector2( 7.82751, 5.79374 )
 texture = ExtResource( 2 )
+
+[node name="ProjectileSpawn" type="Node2D" parent="." index="2"]
+
+position = Vector2( 47.2087, 0 )
+scale = Vector2( 0.466287, 0.0663858 )
 _sections_unfolded = [ "Transform" ]
 
 
