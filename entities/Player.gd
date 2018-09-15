@@ -72,26 +72,6 @@ func _input(event):
 				hook_active = false
 
 func _physics_process(delta):
-	# Beschleunigung berechnen
-	var acceleration = Vector2(key_force.x * (ACCELERATION_X + FRICTION.x), 0)
-	var friction = Vector2(-sign(velocity.x) * FRICTION.x, -sign(velocity.y) * FRICTION.y)
-	var move_velocity = velocity + acceleration + friction + Vector2(0, GRAVITY)
-	
-	# Anhalten, wenn zu langsam
-	if abs(move_velocity.x) <= 1.1 * FRICTION.x:
-		move_velocity.x = 0
-	
-	# Gravitation
-	if is_on_floor():
-		if key_force.y < 0:
-			move_velocity.y = JUMP_VELOCITY_Y
-	
-	# Geschwindigkeit begrenzen
-	if abs(move_velocity.x) > MAX_VELOCITY_X:
-		move_velocity.x = sign(move_velocity.x) * MAX_VELOCITY_X
-	if move_velocity.y > MAX_FALL_VELOCITY:
-		move_velocity.y = MAX_FALL_VELOCITY
-	
 	# Projektile
 	if shoot_button_pressed:
 		shoot_button_pressed = false
@@ -102,7 +82,7 @@ func _physics_process(delta):
 		projectile.direction = (projectile.position - position).normalized()
 		projectile.update_physics()
 		print("bang")
-		
+	
 	# Haken
 	if hook_active:
 		if get_parent().has_node("Hook"):
@@ -154,7 +134,7 @@ func get_vertical_comp(of_vector,to_vector):
 	
 func move_unhooked(jump_ungrounded):
 	# Beschleunigung berechnen
-	var acceleration = Vector2(key_force.x * ACCELERATION_X, 0)
+	var acceleration = Vector2(key_force.x * (ACCELERATION_X + FRICTION.x), 0)
 	var friction = Vector2(-sign(velocity.x) * FRICTION.x, -sign(velocity.y) * FRICTION.y)
 	var move_velocity = velocity + acceleration + friction + Vector2(0, GRAVITY)
 	
@@ -163,7 +143,7 @@ func move_unhooked(jump_ungrounded):
 		move_velocity.x = 0
 	
 	# Gravitation
-	if is_on_floor() or jump_ungrounded:
+	if is_on_floor():
 		if key_force.y < 0:
 			move_velocity.y = JUMP_VELOCITY_Y
 	
@@ -172,7 +152,9 @@ func move_unhooked(jump_ungrounded):
 		move_velocity.x = sign(move_velocity.x) * MAX_VELOCITY_X
 	if move_velocity.y > MAX_FALL_VELOCITY:
 		move_velocity.y = MAX_FALL_VELOCITY
-	move(move_velocity);
+	
+	# Bewegen
+	move(move_velocity)
 
 func move_hooked(hook):
 	if key_force.y==0:
