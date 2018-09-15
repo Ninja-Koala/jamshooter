@@ -1,4 +1,4 @@
-extends "res://entities/Entity.gd"
+extends "res://entities/LivingEntity.gd"
 
 const FLOOR_NORMAL = Vector2(0, -1)
 const ACCELERATION_X = 15

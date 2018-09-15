@@ -49,11 +49,6 @@ outlines = [ PoolVector2Array( -4, -4, -4, 4, 4, 4, 4, -4 ) ]
 2/is_autotile = false
 2/occluder_offset = Vector2( 4, 4 )
 2/navigation_offset = Vector2( 4, 4 )
-2/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 4, 4 )
-} ]
+2/shapes = [  ]
 _sections_unfolded = [ "1" ]
 

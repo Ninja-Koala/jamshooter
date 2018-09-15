@@ -2,17 +2,7 @@ extends KinematicBody2D
 
 const FLOOR_NORMAL = Vector2(0, -1)
 
-export var hitpoints = 1
 var velocity = Vector2(0, 0)
-
-func take_damage(damage):
-	print("ow!")
-	hitpoints -= damage
-	if hitpoints <= 0:
-		die()
-
-func die():
-	pass
 
 func destroy():
 	get_parent().remove_child(self)

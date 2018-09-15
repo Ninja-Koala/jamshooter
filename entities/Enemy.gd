@@ -1,4 +1,4 @@
-extends "res://entities/Entity.gd"
+extends "res://entities/LivingEntity.gd"
 
 onready var hit_area = get_node("HitArea")
 onready var player = get_parent().get_node("Player")
