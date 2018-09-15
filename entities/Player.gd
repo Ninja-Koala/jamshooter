@@ -63,8 +63,10 @@ func _input(event):
 		
 		if Input.is_action_pressed("jump"):
 			key_force.y -= 1
+			print("jump 1")
 		else:
 			jumped = false
+			print("jump 2")
 		
 		if Input.is_action_pressed("move_right"):
 			key_force.x += 1
@@ -190,7 +192,7 @@ func move_unhooked(jump_ungrounded):
 	move(move_velocity)
 
 func move_hooked(hook):
-	if key_force.y == 0:
+	if key_force.y == 0 or jumped:
 		var dir = (hook.position-position).normalized()
 		var dir_scaled = dir*hook.pull_strength
 		var key_force_dir = Vector2(key_force.x, 0)
