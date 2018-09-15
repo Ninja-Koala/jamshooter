@@ -20,17 +20,27 @@ func _physics_process(delta):
 
 func update_physics():
 	if not hooked:
-		position += VELOCITY * direction
-		var collisions = collision_area.get_overlapping_bodies()
-		if collisions.size() != 0:
-			for entity in collisions:
-				if entity.get_class() == "TileMap":
-					print(entity.global_position)
-					var cur_cell=entity.get_cellv((self.global_position-entity.global_position)/64)
-					print(cur_cell)
-					var cell_name = entity.tile_set.tile_get_name(cur_cell)
-					if cell_name == "Wall":
-						hooked = true
-					elif cell_name == "Unhookable Wall":
-						get_parent().get_child("Player").remove_hook()
-						player.update()
+		var collision = move_and_collide(VELOCITY * direction)
+		if collision:
+			var entity = collision.collider
+			#var shape=collision.local_shape
+			#print(shape.get_name())
+			if entity.get_class() == "TileMap":
+				print(collision.normal)
+				print(collision.position)
+				var pos = collision.position - collision.normal*16 - entity.global_position
+				print(pos)
+				var tile_pos=pos/64
+				
+				var tile_x = floor(tile_pos.x)
+				var tile_y = floor(tile_pos.y)
+					
+				var cur_cell=entity.get_cell(tile_x,tile_y)
+				var cell_name = entity.tile_set.tile_get_name(cur_cell)
+				print(cell_name)
+				if cell_name == "Wall":
+					hooked = true
+					return
+				elif cell_name == "Unhookable Wall":
+					get_parent().get_child("Player").remove_hook()
+					player.update()
