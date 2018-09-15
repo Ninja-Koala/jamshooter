@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sprites/wall.png" type="Texture" id=1]
 [ext_resource path="res://sprites/bg_wall.png" type="Texture" id=2]
@@ -8,7 +8,13 @@
 custom_solver_bias = 0.0
 extents = Vector2( 4, 4 )
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="NavigationPolygon" id=2]
+
+vertices = PoolVector2Array( 4, -4, 4, 4, -4, 4, -4, -4 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -4, -4, -4, 4, 4, 4, 4, -4 ) ]
+
+[node name="Node" type="Node"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -38,5 +44,10 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 12, 4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Background" index="0"]
+
+navpoly = SubResource( 2 )
+enabled = true
 
 

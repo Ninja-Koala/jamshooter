@@ -1,36 +1,50 @@
 extends "res://entities/Enemy.gd"
 
-const ACCELERATION_FACTOR = Vector2(15, 20)
-const MAX_SPEED = Vector2(120, 200)
-const FRICTION = Vector2(10, 10)
+const FLOOR_NORMAL = Vector2(0, -1)
+const ACCELERATION_X = 5
+const JUMP_VELOCITY_Y = -800
+const MAX_VELOCITY = Vector2(200, 1000)
+const FRICTION = Vector2(30, 0)
+const GRAVITY = 40
+const MIN_DISTANCE = Vector2(1, 0)
+const MAX_STILL_TIME = 0.3
 
-onready var player = get_parent().get_node("Player")
+var physics_type = preload("res://entities/PhysicsSettings.gd")
+var physics
 
-var move_force = Vector2(0, 0)
-var speed = Vector2(0, 0)
+var key_force = Vector2(0, 0)
+
+var still_time = 0
 
 func _ready():
 	hitpoints = 10
+	physics = physics_type.new()
+	physics.init(ACCELERATION_X, FRICTION, GRAVITY, JUMP_VELOCITY_Y, MAX_VELOCITY)
 
 func die():
 	print("argh!")
 	destroy()
 
-func _process(delta):
-	var move_unscaled = player.get_transform().get_origin()-get_transform().get_origin()
-	move_force=move_unscaled / move_unscaled.length()
-
 func _physics_process(delta):
-	# Beschleunigung berechnen
-	var acceleration = move_force * ACCELERATION_FACTOR
-	var friction = Vector2(-sign(speed.x) * FRICTION.x, -sign(speed.y) * FRICTION.y)
-	var move_speed = acceleration + speed + friction
+	# Weg zum Spieler ermitteln
+	var player_direction = player.global_position - global_position;
+	key_force = Vector2(sign(player_direction.x), 0)
 	
-	# Geschwindigkeit begrenzen
-	if abs(move_speed.x) > MAX_SPEED.x:
-		move_speed.x = sign(move_speed.x) * MAX_SPEED.x
-	if abs(move_speed.y) > MAX_SPEED.y:
-		move_speed.y = sign(move_speed.y) * MAX_SPEED.y
+	if abs(player_direction.x) < MIN_DISTANCE.x:
+		key_force.x = 0
 	
-	# Bewegung
-	speed = move_and_slide(move_speed)
+	# Stillstand?
+	if velocity.length_squared() == 0:
+		still_time += delta
+	else:
+		still_time = 0
+	
+	# Wie lange?
+	if still_time > MAX_STILL_TIME:
+		key_force.y = -1
+	
+	# Physik
+	var collider = physics_move(physics, key_force)
+	
+	# Schaden
+	try_hit_player()

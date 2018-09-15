@@ -1,27 +1,30 @@
-extends KinematicBody2D
+extends "res://entities/Entity.gd"
 
 const FLOOR_NORMAL = Vector2(0, -1)
-const ACCELERATION_X = 45
+const ACCELERATION_X = 15
 const JUMP_VELOCITY_Y = -800
 const MAX_VELOCITY_X = 280
 const MAX_FALL_VELOCITY = 1000
 const FRICTION = Vector2(30, 0)
 const GRAVITY = 40
+const HOOK_AIRCONTROL = 1
 
 const MOUSE_SENSITIVITY = 0.01
 
 const AIRCONTROL_ACCELERATION=550
 const AIRCONTROL_GRAVITY = 500
 
+const INVINCIBILITY_DURATION = 0.5
+
 var key_force = Vector2(0, 0)
-var velocity = Vector2(0, 0)
 
 var crosshair_position = Vector2(1, -1).normalized()
 
 var shoot_button_pressed = false
 var hook_active = false
 var hook_pulls = false
-const hook_aircontrol = 1
+
+var invincibility = 0
 
 onready var collision_box = get_node("CollisionBox")
 onready var projectile_scene = load("res://entities/PlayerProjectile.tscn")
@@ -32,7 +35,15 @@ onready var hook_offset = get_node("HookSpawn").position.length()
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	hitpoints = 5
 
+func take_damage(damage):
+	if invincibility <= 0:
+		.take_damage(damage)
+		invincibility = INVINCIBILITY_DURATION
+
+func die():
+	destroy()
 
 func _input(event):
 	if event is InputEventKey:
@@ -62,7 +73,7 @@ func _input(event):
 
 func _physics_process(delta):
 	# Beschleunigung berechnen
-	var acceleration = Vector2(key_force.x * ACCELERATION_X, 0)
+	var acceleration = Vector2(key_force.x * (ACCELERATION_X + FRICTION.x), 0)
 	var friction = Vector2(-sign(velocity.x) * FRICTION.x, -sign(velocity.y) * FRICTION.y)
 	var move_velocity = velocity + acceleration + friction + Vector2(0, GRAVITY)
 	
@@ -81,8 +92,6 @@ func _physics_process(delta):
 	if move_velocity.y > MAX_FALL_VELOCITY:
 		move_velocity.y = MAX_FALL_VELOCITY
 	
-	
-	
 	# Projektile
 	if shoot_button_pressed:
 		shoot_button_pressed = false
@@ -100,7 +109,6 @@ func _physics_process(delta):
 			var hook = get_parent().get_node("Hook")
 			
 			if hook.hooked:
-				
 				move_hooked(hook)
 			else:
 				move(move_velocity)
@@ -113,11 +121,12 @@ func _physics_process(delta):
 			hook.update_physics()
 			move(move_velocity)
 	else:
-		
 		move(move_velocity)
 		if get_parent().has_node("Hook"):
 			get_parent().remove_child(get_parent().get_node("Hook"))
-			
+	
+	# Unverwundbarkeit nach Treffer
+	invincibility -= delta
 
 func _draw():
 	var length = 2 * max(get_viewport().size.x, get_viewport().size.y)
@@ -138,8 +147,6 @@ func draw_dashed_line(start, end, dash_length, color, width):
 func move(move_velocity):
 	# Bewegung
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
-	if velocity.x > 300:
-		print(velocity)
 		
 func get_vertical_comp(of_vector,to_vector):
 	var x = of_vector-((to_vector.dot(of_vector))/(to_vector.dot(to_vector)))*to_vector
