@@ -9,13 +9,12 @@
 custom_solver_bias = 0.0
 extents = Vector2( 4, 4 )
 
-[sub_resource type="NavigationPolygon" id=2]
-
-vertices = PoolVector2Array( 4, -4, 4, 4, -4, 4, -4, -4 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -4, -4, -4, 4, 4, 4, 4, -4 ) ]
-
 [sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4, 4 )
+
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 4, 4 )
@@ -44,7 +43,6 @@ extents = Vector2( 4, 4 )
 1/is_autotile = false
 1/occluder_offset = Vector2( 4, 4 )
 1/navigation_offset = Vector2( 4, 4 )
-1/navigation = SubResource( 2 )
 1/shapes = [  ]
 2/name = "Unhookable Wall"
 2/texture = ExtResource( 3 )
@@ -58,6 +56,20 @@ extents = Vector2( 4, 4 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 4, 4 )
+} ]
+3/name = "Sprite"
+3/texture = ExtResource( 3 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 8, 8 )
+3/is_autotile = false
+3/occluder_offset = Vector2( 4, 4 )
+3/navigation_offset = Vector2( 4, 4 )
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 4, 4 )
 } ]
 

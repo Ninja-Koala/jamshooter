@@ -1,0 +1,1 @@
+extends "res://entities/PhaseEnemy.gd"
