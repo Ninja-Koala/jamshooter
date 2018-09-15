@@ -26,6 +26,9 @@ var hook_pulls = false
 
 var invincibility = 0
 
+
+var Jumped = false
+var JumpedBefore = false
 onready var collision_box = get_node("CollisionBox")
 onready var projectile_scene = load("res://entities/PlayerProjectile.tscn")
 onready var projectile_offset = get_node("ProjectileSpawn").position.length()
@@ -51,6 +54,12 @@ func _input(event):
 		
 		if Input.is_action_pressed("jump"):
 			key_force.y -= 1
+			JumpedBefore=Jumped
+			Jumped=true
+			
+		else:
+			JumpedBefore=Jumped
+			Jumped=false
 		
 		if Input.is_action_pressed("move_right"):
 			key_force.x += 1
@@ -143,7 +152,7 @@ func move_unhooked(jump_ungrounded):
 		move_velocity.x = 0
 	
 	# Gravitation
-	if is_on_floor():
+	if is_on_floor() or jump_ungrounded:
 		if key_force.y < 0:
 			move_velocity.y = JUMP_VELOCITY_Y
 	
@@ -157,7 +166,7 @@ func move_unhooked(jump_ungrounded):
 	move(move_velocity)
 
 func move_hooked(hook):
-	if key_force.y==0:
+	if key_force.y==0 or JumpedBefore:
 		var dir = (hook.position-position).normalized()
 		var dir_scaled = dir*hook.pull_strength
 		var key_force_dir = Vector2(key_force.x, 0)
