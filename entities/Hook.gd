@@ -24,8 +24,6 @@ func update_physics():
 		if collision:
 			var entity = collision.collider
 			if entity.get_class() == "TileMap":
-				print(collision.normal)
-				print(collision.position)
 				var pos = collision.position - collision.normal*16 - entity.global_position
 				var tile_pos=pos/64
 				
