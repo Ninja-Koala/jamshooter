@@ -43,6 +43,9 @@ func take_damage(damage):
 		invincibility = INVINCIBILITY_DURATION
 
 func die():
+	var hook = get_parent().get_node("Hook")
+	if hook != null:
+		hook.get_parent().remove_child(hook)
 	destroy()
 
 func _input(event):
@@ -70,6 +73,7 @@ func _input(event):
 				hook_active = true
 			else:
 				hook_active = false
+				update()
 
 func _physics_process(delta):
 	# Projektile
@@ -100,6 +104,8 @@ func _physics_process(delta):
 			hook.direction = (hook.position - position).normalized()
 			hook.update_physics()
 			move_unhooked(false)
+		
+		update()
 	else:
 		move_unhooked(false)
 		if get_parent().has_node("Hook"):
@@ -107,22 +113,6 @@ func _physics_process(delta):
 	
 	# Unverwundbarkeit nach Treffer
 	invincibility -= delta
-
-func _draw():
-	var length = 2 * max(get_viewport().size.x, get_viewport().size.y)
-	var scale = get_transform().get_scale()
-	var target = crosshair_position * length
-	target.x *= scale.y / scale.x
-	draw_dashed_line(Vector2(), target, 8, Color(1, 0, 0, 0.5), 2)
-
-func draw_dashed_line(start, end, dash_length, color, width):
-	var delta = dash_length * (end - start).normalized()
-	var current = start
-	var segments = (end - start).length() / (dash_length * 2)
-	for i in range(segments):
-		var next = current + delta
-		draw_line(current, next, color, width)
-		current = next + delta
 		
 func move(move_velocity):
 	# Bewegung
@@ -168,4 +158,25 @@ func move_hooked(hook):
 		move_and_slide(key_force_vert+grav_vert)
 	else:
 		move_unhooked(true)
-		hook_active=false
+		hook_active = false
+
+func _draw():
+	# Crosshair
+	var crosshair_length = 2 * max(get_viewport().size.x, get_viewport().size.y)
+	var scale = get_transform().get_scale()
+	var crosshair_target = crosshair_position * crosshair_length
+	crosshair_target.x *= scale.y / scale.x
+	draw_dashed_line(Vector2(), crosshair_target, 8, Color(1, 0, 0, 0.5), 4)
+	
+	# Hook
+	if hook_active:
+		var hook = get_parent().get_node("Hook")
+		var hook_position = hook.global_position - position
+		draw_checkered_line(hook_position, Vector2(0, 0), 5, Color(0.8, 0.8, 0.8, 1))
+
+func draw_checkered_line(start, end, size, color):
+	var direction = end - start
+	var ortho = Vector2(-direction.y, direction.x).normalized() * size / 2
+	var dir = Vector2(ortho.y, -ortho.x)
+	draw_dashed_line(start + ortho, end + ortho, size, color, size)
+	draw_dashed_line(start - ortho + 2 * dir, end - ortho, size, color, size)
