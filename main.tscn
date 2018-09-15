@@ -58,7 +58,7 @@ enabled = true
 
 [node name="Door" parent="." index="4" instance=ExtResource( 4 )]
 
-position = Vector2( 1568.36, 319.583 )
+position = Vector2( 1568.36, 321.053 )
 scale = Vector2( 8, 8 )
 _sections_unfolded = [ "Transform" ]
 
