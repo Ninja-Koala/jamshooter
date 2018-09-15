@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/bat/Bat.gd" type="Script" id=1]
-[ext_resource path="res://sprites/bat.png" type="Texture" id=2]
+[ext_resource path="res://entities/bat/VampireGhost.gd" type="Script" id=1]
+[ext_resource path="res://sprites/vampire_ghost.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -11,11 +11,11 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 34, 36 )
+extents = Vector2( 33.3333, 34.6667 )
 
-[node name="Bat" type="KinematicBody2D" index="0"]
+[node name="Vampire" type="KinematicBody2D"]
 
-scale = Vector2( 1, 0.5 )
+scale = Vector2( 1.5, 0.75 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -27,7 +27,7 @@ level = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 8, 16 )
+scale = Vector2( 5.33333, 10.6667 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 

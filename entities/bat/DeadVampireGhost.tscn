@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://entities/bat/DeadVampire.gd" type="Script" id=1]
-[ext_resource path="res://sprites/dead_vampire.png" type="Texture" id=2]
+[ext_resource path="res://entities/bat/DeadVampireGhost.gd" type="Script" id=1]
+[ext_resource path="res://sprites/dead_ghost_vampire.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="Node2D" type="KinematicBody2D"]
+[node name="Node2D" type="KinematicBody2D" index="0"]
 
-scale = Vector2( 1.25, 0.5 )
+scale = Vector2( 1, 0.75 )
 input_pickable = false
 collision_layer = 4
 collision_mask = 4
@@ -20,7 +20,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 6.4, 16 )
+scale = Vector2( 8, 10.6667 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 

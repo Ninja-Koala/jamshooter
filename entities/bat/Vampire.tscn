@@ -13,7 +13,7 @@ extents = Vector2( 32, 32 )
 custom_solver_bias = 0.0
 extents = Vector2( 33.3333, 34.6667 )
 
-[node name="Bat" type="KinematicBody2D" index="0"]
+[node name="Vampire" type="KinematicBody2D"]
 
 scale = Vector2( 1.5, 0.75 )
 input_pickable = false
@@ -27,7 +27,6 @@ level = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, 4.76837e-007 )
 scale = Vector2( 5.33333, 10.6667 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
@@ -51,9 +50,6 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShapeHit" type="CollisionShape2D" parent="HitArea" index="0"]
 
 shape = SubResource( 2 )
-script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-hitpoints = 1
-level = 0
 
 
