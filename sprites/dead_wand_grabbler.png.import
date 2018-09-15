@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Door.png-ddeb0145a149080288083efa11e3e2d7.stex"
+path="res://.import/dead_wand_grabbler.png-9913bfc51abac1532799c2a8acacde21.stex"
 
 [deps]
 
-source_file="res://sprites/Door.png"
-dest_files=[ "res://.import/Door.png-ddeb0145a149080288083efa11e3e2d7.stex" ]
+source_file="res://sprites/dead_wand_grabbler.png"
+dest_files=[ "res://.import/dead_wand_grabbler.png-9913bfc51abac1532799c2a8acacde21.stex" ]
 
 [params]
 
