@@ -3,8 +3,9 @@
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Ghost.tscn" type="PackedScene" id=3]
-[ext_resource path="res://entities/Mob1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/Zombie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="NavigationPolygon" id=1]
 

@@ -1,18 +1,13 @@
-extends "res://entities/Enemy.gd"
+extends "res://entities/HumanEnemyBase.gd"
 
-const FLOOR_NORMAL = Vector2(0, -1)
 const ACCELERATION_X = 5
 const JUMP_VELOCITY_Y = -800
 const MAX_VELOCITY = Vector2(200, 1000)
 const FRICTION = Vector2(30, 0)
 const GRAVITY = 40
+
 const MIN_DISTANCE = Vector2(1, 0)
 const MAX_STILL_TIME = 0.3
-
-var dead_scene = preload("res://entities/DeadEnemy.tscn")
-var physics_type = preload("res://entities/PhysicsSettings.gd")
-
-var physics
 
 var key_force = Vector2(0, 0)
 var still_time = 0
@@ -20,19 +15,16 @@ var still_time = 0
 var path
 
 func _ready():
+	body_scene = preload("res://entities/DeadEnemy.tscn")
+	next_scene = preload("res://entities/Ghost.tscn")
+	level = 1
+	respawn_time = 3
 	hitpoints = 10
-	physics = physics_type.new()
-	physics.init(ACCELERATION_X, FRICTION, GRAVITY, JUMP_VELOCITY_Y, MAX_VELOCITY)
-
-func die():
-	print("argh!")
-	var dead = dead_scene.instance()
-	get_parent().add_child(dead)
-	dead.position = position
-	destroy()
+	
+	physics.init(Vector2(ACCELERATION_X, 0), FRICTION, GRAVITY, JUMP_VELOCITY_Y, MAX_VELOCITY)
 
 func _physics_process(delta):
-	path = get_path()
+	path = get_path_to_player()
 	update()
 	
 	# Weg zum Spieler ermitteln
@@ -59,5 +51,6 @@ func _physics_process(delta):
 	try_hit_player()
 
 func _draw():
-	for p in path:
-		draw_circle(p - global_position, 5, Color(1, 0, 0, 1))
+	if path != null:
+		for p in path:
+			draw_circle(p - global_position, 5, Color(1, 0, 0, 1))

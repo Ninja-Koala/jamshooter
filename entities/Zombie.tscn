@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/Mob1.gd" type="Script" id=1]
+[ext_resource path="res://entities/Zombie.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -13,7 +13,7 @@ extents = Vector2( 31, 44 )
 custom_solver_bias = 0.0
 extents = Vector2( 35.1477, 46.6989 )
 
-[node name="Mob1" type="KinematicBody2D" index="0"]
+[node name="Zombie" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -22,6 +22,7 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 hitpoints = 1
+level = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

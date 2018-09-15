@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 const FLOOR_NORMAL = Vector2(0, -1)
 
+var physics_type = preload("res://entities/PhysicsSettings.gd")
+var physics = physics_type.new()
+
 var velocity = Vector2(0, 0)
 
 func destroy():
@@ -9,7 +12,7 @@ func destroy():
 
 func physics_move(settings, key_force):
 	# Beschleunigung berechnen
-	var acceleration = Vector2(key_force.x * (settings.acceleration_x + settings.friction.x), 0)
+	var acceleration = Vector2(key_force.x * (settings.acceleration.x + settings.friction.x), 0)
 	var friction = Vector2(-sign(velocity.x) * settings.friction.x, -sign(velocity.y) * settings.friction.y)
 	var move_velocity = velocity + acceleration + friction + Vector2(0, settings.gravity)
 	
@@ -26,6 +29,28 @@ func physics_move(settings, key_force):
 	if abs(move_velocity.x) > settings.max_velocity.x:
 		move_velocity.x = sign(move_velocity.x) * settings.max_velocity.x
 	if move_velocity.y > settings.max_velocity.y:
+		move_velocity.y = settings.max_velocity.y
+	
+	# Bewegung
+	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
+	
+	# Kollisionen
+	var collision = get_slide_collision(0)
+	if collision == null:
+		return null
+	else:
+		return collision.collider
+
+func physics_fly(settings, key_force):
+	# Beschleunigung berechnen
+	var acceleration = key_force * (settings.acceleration + settings.friction)
+	var friction = Vector2(-sign(velocity.x) * settings.friction.x, -sign(velocity.y) * settings.friction.y)
+	var move_velocity = acceleration + velocity + friction + settings.gravity
+	
+	# Geschwindigkeit begrenzen
+	if abs(move_velocity.x) > settings.max_velocity.x:
+		move_velocity.x = sign(move_velocity.x) * settings.max_velocity.x
+	if abs(move_velocity.y) > settings.max_velocity.y:
 		move_velocity.y = settings.max_velocity.y
 	
 	# Bewegung
