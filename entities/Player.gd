@@ -16,10 +16,15 @@ var velocity = Vector2(0, 0)
 var crosshair_position = Vector2(1, -1).normalized()
 
 var shoot_button_pressed = false
+var hook_active = false
+var hook_pulls = false
 
 onready var collision_box = get_node("CollisionBox")
 onready var projectile_scene = load("res://entities/PlayerProjectile.tscn")
 onready var projectile_offset = get_node("ProjectileSpawn").position.length()
+
+onready var hook_scene = load("res://entities/Hook.tscn")
+onready var hook_offset = get_node("HookSpawn").position.length()
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -44,6 +49,11 @@ func _input(event):
 				shoot_button_pressed = true
 			else:
 				shoot_button_pressed = false
+		elif event.button_index == BUTTON_RIGHT:
+			if event.pressed:
+				hook_active = true
+			else:
+				hook_active = false
 
 func _physics_process(delta):
 	# Beschleunigung berechnen
@@ -66,10 +76,7 @@ func _physics_process(delta):
 	if move_velocity.y > MAX_FALL_VELOCITY:
 		move_velocity.y = MAX_FALL_VELOCITY
 	
-	# Bewegung
-	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
-	if velocity.x > 300:
-		print(velocity)
+	
 	
 	# Projektile
 	if shoot_button_pressed:
@@ -81,6 +88,30 @@ func _physics_process(delta):
 		projectile.direction = (projectile.position - position).normalized()
 		projectile.update_physics()
 		print("bang")
+		
+	# Haken
+	if hook_active:
+		if get_parent().has_node("Hook"):
+			var hook = get_parent().get_node("Hook")
+			move(move_velocity)
+			if hook.hooked:
+				var dir = (hook.position-position).normalized()
+				move_velocity = dir*hook.pull_strength
+				move(move_velocity)
+		else:
+			var hook = hook_scene.instance()
+			get_parent().add_child(hook)
+			hook.position = position + (hook_offset * crosshair_position)
+			hook.rotation = Vector2(1, 0).angle_to(crosshair_position)
+			hook.direction = (hook.position - position).normalized()
+			hook.update_physics()
+			move(move_velocity)
+	else:
+		
+		move(move_velocity)
+		if get_parent().has_node("Hook"):
+			get_parent().remove_child(get_parent().get_node("Hook"))
+			
 
 func _draw():
 	var length = 2 * max(get_viewport().size.x, get_viewport().size.y)
@@ -97,3 +128,9 @@ func draw_dashed_line(start, end, dash_length, color, width):
 		var next = current + delta
 		draw_line(current, next, color, width)
 		current = next + delta
+		
+func move(move_velocity):
+	# Bewegung
+	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
+	if velocity.x > 300:
+		print(velocity)

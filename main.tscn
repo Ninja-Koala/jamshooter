@@ -10,6 +10,7 @@
 
 [node name="TileMap" type="TileMap" parent="Environment" index="0"]
 
+position = Vector2( -268.306, 19.5954 )
 scale = Vector2( 8, 8 )
 mode = 0
 tile_set = ExtResource( 1 )

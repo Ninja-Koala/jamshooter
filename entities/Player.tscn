@@ -34,4 +34,10 @@ position = Vector2( 47.2087, 0 )
 scale = Vector2( 0.466287, 0.0663858 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="HookSpawn" type="Node2D" parent="." index="3"]
+
+position = Vector2( 47.2087, 0 )
+scale = Vector2( 0.466287, 0.0663858 )
+_sections_unfolded = [ "Transform" ]
+
 
