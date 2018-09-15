@@ -51,7 +51,9 @@ func physics_fly(settings, key_force):
 	if abs(move_velocity.x) > settings.max_velocity.x:
 		move_velocity.x = sign(move_velocity.x) * settings.max_velocity.x
 	if abs(move_velocity.y) > settings.max_velocity.y:
-		move_velocity.y = settings.max_velocity.y
+		move_velocity.y = sign(move_velocity.y) * settings.max_velocity.y
+	
+	print(move_velocity)
 	
 	# Bewegung
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
