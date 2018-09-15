@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Mob1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/Ghost.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -40,5 +41,9 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [node name="Mob1" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 286.441, 251.769 )
+
+[node name="Ghost" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 135.66, 209.52 )
 
 
