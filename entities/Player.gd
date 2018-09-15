@@ -24,6 +24,8 @@ var crosshair_position = Vector2(1, -1).normalized()
 
 var jumped = false
 
+var jumpingBefore = false
+
 var shoot_button_pressed = false
 var hook_button_pressed = false
 var hook_button_released = false
@@ -149,6 +151,12 @@ func _physics_process(delta):
 	
 	# Knockback zurücksetzen
 	knockback = Vector2(0, 0)
+	
+	
+	if key_force.y==0:
+		jumpingBefore=false
+	else:
+		jumpingBefore=true
 		
 func move(move_velocity):
 	# Bewegung
@@ -192,7 +200,7 @@ func move_unhooked(jump_ungrounded):
 	move(move_velocity)
 
 func move_hooked(hook):
-	if key_force.y == 0 or jumped:
+	if key_force.y == 0 or jumpingBefore:
 		var dir = (hook.position-position).normalized()
 		var dir_scaled = dir*hook.pull_strength
 		var key_force_dir = Vector2(key_force.x, 0)
