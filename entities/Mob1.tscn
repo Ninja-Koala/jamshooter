@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 44 )
+extents = Vector2( 31, 44 )
 
 [node name="Mob1" type="KinematicBody2D"]
 
