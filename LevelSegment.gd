@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	return
 	var navigation = get_node("Environment/Navigation")
 	var tilemap = navigation.get_node("TileMap")
 	

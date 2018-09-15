@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://entities/bat/Bat.tscn" type="PackedScene" id=3]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/human/Zombie.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -11,7 +12,7 @@ vertices = PoolVector2Array( 8, -32, 8, 32, -56, 32, -56, -32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -56, -32, -56, 32, 8, 32, 8, -32 ) ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -21,7 +22,6 @@ script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="Environment/Navigation" index="0"]
 
-position = Vector2( -192, 0 )
 scale = Vector2( 8, 8 )
 mode = 0
 tile_set = ExtResource( 2 )
@@ -46,13 +46,17 @@ _sections_unfolded = [ "Cell", "Collision", "Material", "Transform", "Visibility
 
 position = Vector2( 288, 280 )
 
+[node name="Zombie" parent="Environment" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 432, 248 )
+
 [node name="NavigationPolygonTemplate" type="NavigationPolygonInstance" parent="." index="1"]
 
 position = Vector2( 56, 32 )
 navpoly = SubResource( 1 )
 enabled = true
 
-[node name="Player" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Player" parent="." index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 320, 432 )
 z_index = 10
