@@ -1,12 +1,12 @@
 extends Node2D
 
-const VELOCITY = 10
+const VELOCITY = 40
 
 export var direction = Vector2(1, 0)
 
 export var hooked = false
 
-export var pull_strength = 300
+export var pull_strength = 400
 
 onready var collision_area = get_node("CollisionArea")
 onready var enemy_type = preload("res://entities/Enemy.gd")

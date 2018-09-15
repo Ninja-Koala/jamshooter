@@ -10,6 +10,9 @@ const GRAVITY = 40
 
 const MOUSE_SENSITIVITY = 0.01
 
+const AIRCONTROL_ACCELERATION=550
+const AIRCONTROL_GRAVITY = 500
+
 var key_force = Vector2(0, 0)
 var velocity = Vector2(0, 0)
 
@@ -18,6 +21,7 @@ var crosshair_position = Vector2(1, -1).normalized()
 var shoot_button_pressed = false
 var hook_active = false
 var hook_pulls = false
+const hook_aircontrol = 1
 
 onready var collision_box = get_node("CollisionBox")
 onready var projectile_scene = load("res://entities/PlayerProjectile.tscn")
@@ -28,6 +32,7 @@ onready var hook_offset = get_node("HookSpawn").position.length()
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func _input(event):
 	if event is InputEventKey:
@@ -93,10 +98,11 @@ func _physics_process(delta):
 	if hook_active:
 		if get_parent().has_node("Hook"):
 			var hook = get_parent().get_node("Hook")
-			move(move_velocity)
+			
 			if hook.hooked:
-				var dir = (hook.position-position).normalized()
-				move_velocity = dir*hook.pull_strength
+				
+				move_hooked(hook)
+			else:
 				move(move_velocity)
 		else:
 			var hook = hook_scene.instance()
@@ -134,3 +140,17 @@ func move(move_velocity):
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
 	if velocity.x > 300:
 		print(velocity)
+		
+func get_vertical_comp(of_vector,to_vector):
+	var x = of_vector-((to_vector.dot(of_vector))/(to_vector.dot(to_vector)))*to_vector
+	return x
+	
+func move_hooked(hook):
+	var dir = (hook.position-position).normalized()
+	var dir_scaled = dir*hook.pull_strength
+	var key_force_dir = Vector2(key_force.x, 0)
+	var key_force_vert = get_vertical_comp(key_force_dir,dir)*AIRCONTROL_ACCELERATION;
+	var grav_vert = get_vertical_comp(Vector2(0, AIRCONTROL_GRAVITY),dir);
+	
+	move_and_slide(dir_scaled)
+	move_and_slide(key_force_vert+grav_vert)

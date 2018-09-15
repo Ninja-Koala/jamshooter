@@ -10,10 +10,12 @@ extents = Vector2( 10, 10 )
 
 [node name="Hook" type="Node2D"]
 
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 direction = Vector2( 1, 0 )
 hooked = false
-pull_strength = 300
+pull_strength = 400
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
