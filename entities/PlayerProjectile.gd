@@ -11,8 +11,6 @@ onready var enemy_type = preload("res://entities/Enemy.gd")
 var lifetime = 3
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
 
 func _physics_process(delta):
@@ -30,3 +28,12 @@ func update_physics():
 		
 		if collisions[0] is enemy_type:
 			collisions[0].take_damage(damage)
+	
+	collisions = collision_area.get_overlapping_areas()
+	
+	if collisions.size() != 0:
+		get_parent().remove_child(self)
+		
+		if collisions[0].get_parent() is enemy_type:
+			collisions[0].get_parent().take_damage(damage)
+	

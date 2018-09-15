@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.8389, 31.7187 )
+extents = Vector2( 30, 10 )
 
 [node name="PlayerProjectile" type="Node2D"]
 
-scale = Vector2( 0.316379, 0.151965 )
+scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 direction = Vector2( 1, 0 )
@@ -18,7 +18,7 @@ damage = 1
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 10.6265, 31.3635 )
+scale = Vector2( 10, 10 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -31,6 +31,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionBox" type="CollisionShape2D" parent="CollisionArea" index="0"]
 
