@@ -40,11 +40,13 @@ var hook_scene = preload("res://entities/Hook.tscn")
 onready var collision_box = get_node("CollisionBox")
 onready var projectile_offset = get_node("ProjectileSpawn").position.length()
 onready var hook_offset = get_node("HookSpawn").position.length()
+onready var dead_player_scene = preload("res://entities/DeadPlayer.tscn")
+onready var dead_scene = preload("res://entities/DeadScene.tscn")
 
 func _ready():
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	hitpoints = 50
+	hitpoints = 5
 
 func take_damage(damage, attacker = null):
 	if invincibility <= 0:
@@ -58,6 +60,14 @@ func die():
 	var hook = get_parent().get_node("Hook")
 	if hook != null:
 		remove_hook()
+	var dead_player = dead_player_scene.instance()
+	get_parent().add_child(dead_player)
+	dead_player.global_position = global_position
+	
+	var dead = dead_scene.instance()
+	get_node("/root").add_child(dead)
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	destroy()
 
 func _input(event):

@@ -1,0 +1,215 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://grey_alpha.png" type="Texture" id=1]
+[ext_resource path="res://DejaVuSerif.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://entities/Retry.gd" type="Script" id=3]
+[ext_resource path="res://entities/Quit.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 100
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 50
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 50
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Settings" ]
+
+[node name="Background" type="CanvasLayer" index="0" groups=[
+"background",
+]]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 100.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Margin" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 1366.0
+margin_bottom = 668.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 430.0
+margin_right = 927.0
+margin_bottom = 668.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 497.0
+margin_bottom = 117.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "You Died!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 121.0
+margin_right = 497.0
+margin_bottom = 255.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Margin" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 497.0
+margin_bottom = 134.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="Retry" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 489.0
+margin_bottom = 65.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Retry Level"
+flat = false
+align = 1
+script = ExtResource( 3 )
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Quit" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 69.0
+margin_right = 489.0
+margin_bottom = 134.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Quit Game"
+flat = false
+align = 1
+script = ExtResource( 4 )
+_sections_unfolded = [ "custom_fonts" ]
+
+
