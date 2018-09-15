@@ -10,7 +10,7 @@
 vertices = PoolVector2Array( 8, -32, 8, 32, -56, 32, -56, -32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -56, -32, -56, 32, 8, 32, 8, -32 ) ]
-
+ 
 [node name="Node2D" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
