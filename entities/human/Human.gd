@@ -41,9 +41,8 @@ func _physics_process(delta):
 		
 		# Richtung umkehren und Bewegung stattdessen in die andere Richtung
 		direction = -direction
-		#key_force = Vector2(direction, 0)
-		#position = position_before + key_force
-		#physics_move(physics, key_force)
+		key_force = Vector2(direction, 0)
+		physics_move(physics, key_force)
 	
 	# Schaden
 	try_hit_player()
