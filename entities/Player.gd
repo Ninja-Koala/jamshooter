@@ -137,6 +137,23 @@ func _physics_process(delta):
 		if get_parent().has_node("Hook"):
 			remove_hook()
 	
+	for i in range(get_slide_count()):
+		var collision = get_slide_collision(i)
+		var entity = collision.collider
+		
+		if entity.get_class() == "TileMap":
+			var pos = collision.position - collision.normal*16 - entity.global_position
+			var tile_pos=pos/64
+				
+			var tile_x = floor(tile_pos.x)
+			var tile_y = floor(tile_pos.y)
+			
+			var cur_cell=entity.get_cell(tile_x,tile_y)
+			var cell_name = entity.tile_set.tile_get_name(cur_cell)
+			
+			if cell_name == "Lava":
+				die()
+	
 	# Unverwundbarkeit nach Treffer
 	invincibility -= delta
 	if invincibility > 0:
