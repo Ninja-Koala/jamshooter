@@ -12,4 +12,4 @@ func try_hit_player():
 			player.take_damage(1)
 
 func get_path():
-	return get_node("../Environment/Navigation").get_simple_path(global_position, get_node("../Player").global_position, false)
+	return get_node("../Environment/Navigation").get_simple_path(global_position, player.global_position, false)

@@ -29,6 +29,10 @@ func update_physics():
 		var collisions = collision_area.get_overlapping_bodies()
 		if collisions.size() != 0:
 			for entity in collisions:
-				if not entity is player_type and not entity is enemy_type:
-					hooked = true
-					
+				if entity.get_class() == "TileMap":
+					var cur_cell=entity.get_cellv(self.global_position/64-entity.global_position)
+					var cell_name = entity.tile_set.tile_get_name(cur_cell)
+					if cell_name == "Wall":
+						hooked = true
+					elif cell_name == "Unhookable Wall":
+						get_parent().remove_child(self)

@@ -9,13 +9,15 @@ const GRAVITY = 40
 const MIN_DISTANCE = Vector2(1, 0)
 const MAX_STILL_TIME = 0.3
 
+var dead_scene = preload("res://entities/DeadEnemy.tscn")
 var physics_type = preload("res://entities/PhysicsSettings.gd")
+
 var physics
-onready var dead_scene = load("res://entities/DeadEnemy.tscn")
 
 var key_force = Vector2(0, 0)
-
 var still_time = 0
+
+var path
 
 func _ready():
 	hitpoints = 10
@@ -30,6 +32,9 @@ func die():
 	destroy()
 
 func _physics_process(delta):
+	path = get_path()
+	update()
+	
 	# Weg zum Spieler ermitteln
 	var player_direction = player.global_position - global_position;
 	key_force = Vector2(sign(player_direction.x), 0)
@@ -52,3 +57,7 @@ func _physics_process(delta):
 	
 	# Schaden
 	try_hit_player()
+
+func _draw():
+	for p in path:
+		draw_circle(p - global_position, 5, Color(1, 0, 0, 1))
