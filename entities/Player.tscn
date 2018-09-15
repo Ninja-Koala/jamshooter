@@ -6,11 +6,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.8389, 31.7187 )
+extents = Vector2( 32, 44 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
-scale = Vector2( 0.603221, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -21,12 +20,13 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionBox" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-position = Vector2( 0.161613, -0.419851 )
-scale = Vector2( 7.82751, 5.79374 )
+scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ProjectileSpawn" type="Node2D" parent="." index="2"]
 

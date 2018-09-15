@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hook.png-efbc2eef1c9c268279d7205af257a78e.stex"
+path="res://.import/ghost.png-55a8752c6aa62374e29652d633339708.stex"
 
 [deps]
 
-source_file="res://sprites/Hook.png"
-dest_files=[ "res://.import/Hook.png-efbc2eef1c9c268279d7205af257a78e.stex" ]
+source_file="res://sprites/ghost.png"
+dest_files=[ "res://.import/ghost.png-55a8752c6aa62374e29652d633339708.stex" ]
 
 [params]
 
