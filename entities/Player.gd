@@ -221,10 +221,11 @@ func _draw():
 	draw_dashed_line(Vector2(), crosshair_target, 8, Color(1, 0, 0, 0.5), 4)
 	
 	# Hook
-	var hook = get_parent().get_node("Hook")
-	if hook != null:
-		var hook_position = hook.global_position - position
-		draw_checkered_line(hook_position, Vector2(0, 0), 5, Color(0.8, 0.8, 0.8, 1))
+	if get_parent().has_node("Hook"):
+		var hook = get_parent().get_node("Hook")
+		if hook != null:
+			var hook_position = hook.global_position - position
+			draw_checkered_line(hook_position, Vector2(0, 0), 5, Color(0.8, 0.8, 0.8, 1))
 
 func draw_checkered_line(start, end, size, color):
 	var direction = end - start
