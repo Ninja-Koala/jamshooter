@@ -11,6 +11,7 @@ const MAX_STILL_TIME = 0.3
 
 var physics_type = preload("res://entities/PhysicsSettings.gd")
 var physics
+onready var dead_scene = load("res://entities/DeadEnemy.tscn")
 
 var key_force = Vector2(0, 0)
 
@@ -23,6 +24,9 @@ func _ready():
 
 func die():
 	print("argh!")
+	var dead = dead_scene.instance()
+	get_parent().add_child(dead)
+	dead.position = position
 	destroy()
 
 func _physics_process(delta):

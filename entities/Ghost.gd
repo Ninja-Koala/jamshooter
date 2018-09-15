@@ -4,8 +4,6 @@ const ACCELERATION_FACTOR = Vector2(15, 20)
 const MAX_SPEED = Vector2(120, 200)
 const FRICTION = Vector2(10, 10)
 
-onready var player = get_parent().get_node("Player")
-
 var move_force = Vector2(0, 0)
 var speed = Vector2(0, 0)
 
