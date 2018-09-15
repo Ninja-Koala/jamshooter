@@ -49,7 +49,7 @@ func take_damage(damage):
 func die():
 	var hook = get_parent().get_node("Hook")
 	if hook != null:
-		hook.get_parent().remove_child(hook)
+		remove_hook()
 	destroy()
 
 func _input(event):
@@ -127,7 +127,7 @@ func _physics_process(delta):
 	else:
 		move_unhooked(false)
 		if get_parent().has_node("Hook"):
-			get_parent().remove_child(get_parent().get_node("Hook"))
+			remove_hook()
 	
 	# Unverwundbarkeit nach Treffer
 	invincibility -= delta
@@ -200,3 +200,7 @@ func draw_checkered_line(start, end, size, color):
 	var dir = Vector2(ortho.y, -ortho.x)
 	draw_dashed_line(start + ortho, end + ortho, size, color, size)
 	draw_dashed_line(start - ortho + 2 * dir, end - ortho, size, color, size)
+	
+func remove_hook():
+	get_parent().remove_child(get_parent().get_node("Hook"))
+	update()
