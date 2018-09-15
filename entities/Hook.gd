@@ -30,10 +30,11 @@ func update_physics():
 				var tile_x = floor(tile_pos.x)
 				var tile_y = floor(tile_pos.y)
 					
-				var cur_cell=entity.get_cell(tile_x,tile_y)
+				var cur_cell = entity.get_cell(tile_x,tile_y)
 				var cell_name = entity.tile_set.tile_get_name(cur_cell)
 				if cell_name == "Wall":
 					hooked = true
+					position -= collision.normal * 16
 					return
 				elif cell_name == "Unhookable Wall":
 					player.remove_hook()

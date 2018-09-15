@@ -6,9 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 4, 4 )
 
-[node name="Hook" type="KinematicBody2D"]
+[node name="Hook" type="KinematicBody2D" index="0"]
 
 scale = Vector2( 2, 2 )
 input_pickable = false
