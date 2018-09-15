@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Door.png-ddeb0145a149080288083efa11e3e2d7.stex"
+path="res://.import/dead_vampire.png-cca5411bb49141dfe3c2c46aca398844.stex"
 
 [deps]
 
-source_file="res://sprites/Door.png"
-dest_files=[ "res://.import/Door.png-ddeb0145a149080288083efa11e3e2d7.stex" ]
+source_file="res://sprites/dead_vampire.png"
+dest_files=[ "res://.import/dead_vampire.png-cca5411bb49141dfe3c2c46aca398844.stex" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Door.png-ddeb0145a149080288083efa11e3e2d7.stex"
+path="res://.import/dead_bat.png-9381384b79e54fbdb01c0006b9f9c21a.stex"
 
 [deps]
 
-source_file="res://sprites/Door.png"
-dest_files=[ "res://.import/Door.png-ddeb0145a149080288083efa11e3e2d7.stex" ]
+source_file="res://sprites/dead_bat.png"
+dest_files=[ "res://.import/dead_bat.png-9381384b79e54fbdb01c0006b9f9c21a.stex" ]
 
 [params]
 
