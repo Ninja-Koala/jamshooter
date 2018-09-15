@@ -5,13 +5,13 @@
 [ext_resource path="res://entities/Ghost.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/Mob1.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
 [node name="TileMap" type="TileMap" parent="Environment" index="0"]
 
-position = Vector2( 0.000640869, -2.86102e-005 )
+position = Vector2( 0.0, 0.0 )
 scale = Vector2( 8, 8 )
 mode = 0
 tile_set = ExtResource( 1 )
@@ -42,7 +42,11 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 position = Vector2( 135.66, 209.52 )
 
-[node name="Mob1" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Ghost2" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 798.889, 155.256 )
+
+[node name="Mob1" parent="." index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 312.886, 224.462 )
 
