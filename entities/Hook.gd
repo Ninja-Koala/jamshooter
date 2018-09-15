@@ -23,13 +23,10 @@ func update_physics():
 		var collision = move_and_collide(VELOCITY * direction)
 		if collision:
 			var entity = collision.collider
-			#var shape=collision.local_shape
-			#print(shape.get_name())
 			if entity.get_class() == "TileMap":
 				print(collision.normal)
 				print(collision.position)
 				var pos = collision.position - collision.normal*16 - entity.global_position
-				print(pos)
 				var tile_pos=pos/64
 				
 				var tile_x = floor(tile_pos.x)
@@ -37,10 +34,10 @@ func update_physics():
 					
 				var cur_cell=entity.get_cell(tile_x,tile_y)
 				var cell_name = entity.tile_set.tile_get_name(cur_cell)
-				print(cell_name)
 				if cell_name == "Wall":
 					hooked = true
 					return
 				elif cell_name == "Unhookable Wall":
 					get_parent().get_child("Player").remove_hook()
-					player.update()
+			else:
+				get_parent().get_child("Player").remove_hook()
