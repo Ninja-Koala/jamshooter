@@ -5,13 +5,12 @@
 [ext_resource path="res://entities/Ghost.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/Mob1.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
 [node name="TileMap" type="TileMap" parent="Environment" index="0"]
 
-position = Vector2( 0.0, 0.0 )
 scale = Vector2( 8, 8 )
 mode = 0
 tile_set = ExtResource( 1 )
@@ -36,7 +35,7 @@ _sections_unfolded = [ "Cell", "Material", "Transform", "Visibility" ]
 
 position = Vector2( 457, 266 )
 z_index = 10
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="Ghost" parent="." index="2" instance=ExtResource( 3 )]
 
