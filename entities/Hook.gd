@@ -32,5 +32,5 @@ func update_physics():
 					if cell_name == "Wall":
 						hooked = true
 					elif cell_name == "Unhookable Wall":
-						get_parent().remove_child(self)
+						get_parent().get_child("Player").remove_hook()
 						player.update()
