@@ -46,13 +46,13 @@ position = Vector2( 12, 4 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="2"]
+[node name="Unhookable Wall" type="Sprite" parent="." index="2"]
 
 position = Vector2( 20, 4 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Unhookable Wall" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -63,7 +63,7 @@ friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Collision" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Unhookable Wall/StaticBody2D" index="0"]
 
 shape = SubResource( 3 )
 
