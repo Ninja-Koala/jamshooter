@@ -8,15 +8,17 @@ const MAX_FALL_VELOCITY = 1000
 const FRICTION = Vector2(30, 0)
 const GRAVITY = 40
 const HOOK_AIRCONTROL = 1
+const KNOCKBACK_VELOCITY = 700
 
 const MOUSE_SENSITIVITY = 0.01
 
 const AIRCONTROL_ACCELERATION=550
 const AIRCONTROL_GRAVITY = 500
 
-const INVINCIBILITY_DURATION = 0.5
+const INVINCIBILITY_DURATION = 1
 
 var key_force = Vector2(0, 0)
+var knockback = Vector2(0, 0)
 
 var crosshair_position = Vector2(1, -1).normalized()
 
@@ -39,12 +41,15 @@ onready var hook_offset = get_node("HookSpawn").position.length()
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	hitpoints = 5
+	hitpoints = 50
 
-func take_damage(damage):
+func take_damage(damage, attacker = null):
 	if invincibility <= 0:
 		.take_damage(damage)
 		invincibility = INVINCIBILITY_DURATION
+		if attacker != null:
+			var direction = (attacker.global_position - global_position).normalized()
+			knockback = -KNOCKBACK_VELOCITY * direction
 
 func die():
 	var hook = get_parent().get_node("Hook")
@@ -94,7 +99,8 @@ func _physics_process(delta):
 		projectile.direction = (projectile.position - position).normalized()
 		projectile.update_physics()
 		print("bang")
-		
+	
+	# Hook
 	if hook_button_pressed:
 		hook_active=true
 		
@@ -131,6 +137,16 @@ func _physics_process(delta):
 	
 	# Unverwundbarkeit nach Treffer
 	invincibility -= delta
+	if invincibility > 0:
+		if int((invincibility * 100)) % 2 == 0:
+			modulate.a = 0.2
+		else:
+			modulate.a = 1
+	else:
+		modulate.a = 1
+	
+	# Knockback zurücksetzen
+	knockback = Vector2(0, 0)
 		
 func move(move_velocity):
 	# Bewegung
@@ -143,24 +159,32 @@ func get_vertical_comp(of_vector,to_vector):
 func move_unhooked(jump_ungrounded):
 	# Beschleunigung berechnen
 	var acceleration = Vector2(key_force.x * (ACCELERATION_X + FRICTION.x), 0)
-	var friction = Vector2(-sign(velocity.x) * FRICTION.x, -sign(velocity.y) * FRICTION.y)
-	var move_velocity = velocity + acceleration + friction + Vector2(0, GRAVITY)
+	var move_velocity = velocity + acceleration + Vector2(0, GRAVITY)
 	
-	# Anhalten, wenn zu langsam
-	if abs(move_velocity.x) <= 1.1 * FRICTION.x:
-		move_velocity.x = 0
-	
-	# Gravitation
-	if is_on_floor() or jump_ungrounded:
-		if key_force.y < 0 && !jumped:
-			move_velocity.y = JUMP_VELOCITY_Y
-			jumped = true
-	
-	# Geschwindigkeit begrenzen
-	if abs(move_velocity.x) > MAX_VELOCITY_X:
-		move_velocity.x = sign(move_velocity.x) * MAX_VELOCITY_X
-	if move_velocity.y > MAX_FALL_VELOCITY:
-		move_velocity.y = MAX_FALL_VELOCITY
+	# Gibt es Knockback?
+	if knockback != Vector2(0, 0):
+		move_velocity = knockback
+		print("knockback")
+	else:
+		# Anhalten, wenn zu langsam
+		if abs(move_velocity.x) <= 1.1 * FRICTION.x:
+			move_velocity.x = 0
+		
+		# Springen
+		if is_on_floor() or jump_ungrounded:
+			if key_force.y < 0 && !jumped:
+				move_velocity.y = JUMP_VELOCITY_Y
+				jumped = true
+		
+		# Geschwindigkeit begrenzen
+		if abs(move_velocity.x) > MAX_VELOCITY_X:
+			move_velocity.x = sign(move_velocity.x) * abs(velocity.x)
+		if move_velocity.y > MAX_FALL_VELOCITY:
+			move_velocity.y = MAX_FALL_VELOCITY
+		
+		# Reibung
+		var friction = Vector2(-sign(velocity.x) * FRICTION.x, -sign(velocity.y) * FRICTION.y)
+		move_velocity += friction
 	
 	# Bewegen
 	move(move_velocity)
