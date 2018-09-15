@@ -38,11 +38,12 @@ func physics_move(settings, key_force):
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
 	
 	# Kollisionen
-	var collision = get_slide_collision(0)
-	if collision == null:
-		return null
-	else:
-		return collision.collider
+	if get_slide_count()!=0:
+		var collision = get_slide_collision(0)
+		if collision == null:
+			return null
+		else:
+			return collision.collider
 
 func physics_fly(settings, key_force):
 	if settings == null:
@@ -65,11 +66,12 @@ func physics_fly(settings, key_force):
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
 	
 	# Kollisionen
-	var collision = get_slide_collision(0)
-	if collision == null:
-		return null
-	else:
-		return collision.collider
+	if get_slide_count()!=0:
+		var collision = get_slide_collision(0)
+		if collision == null:
+			return null
+		else:
+			return collision.collider
 
 func draw_dashed_line(start, end, dash_length, color, width):
 	var delta = dash_length * (end - start).normalized()
