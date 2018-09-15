@@ -15,8 +15,6 @@ onready var player_type = preload("res://entities/Player.gd")
 
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
 
 func _physics_process(delta):
@@ -30,7 +28,9 @@ func update_physics():
 		if collisions.size() != 0:
 			for entity in collisions:
 				if entity.get_class() == "TileMap":
-					var cur_cell=entity.get_cellv(self.global_position/64-entity.global_position)
+					print(entity.global_position)
+					var cur_cell=entity.get_cellv((self.global_position-entity.global_position)/64)
+					print(cur_cell)
 					var cell_name = entity.tile_set.tile_get_name(cur_cell)
 					if cell_name == "Wall":
 						hooked = true
