@@ -11,7 +11,6 @@
 
 [node name="TileMap" type="TileMap" parent="Environment" index="0"]
 
-position = Vector2( 0.0, 0.0 )
 scale = Vector2( 8, 8 )
 mode = 0
 tile_set = ExtResource( 1 )
@@ -36,7 +35,7 @@ _sections_unfolded = [ "Cell", "Material", "Transform", "Visibility" ]
 
 position = Vector2( 457, 266 )
 z_index = 10
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="Ghost" parent="." index="2" instance=ExtResource( 3 )]
 
