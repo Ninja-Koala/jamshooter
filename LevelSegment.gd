@@ -18,7 +18,7 @@ func _ready():
 		var cell = tilemap.get_cell(cell_position.x, cell_position.y)
 		var shape = tilemap.tile_set.tile_get_shape(cell, 0)
 		if shape != null:
-			var navigation_polygon = get_node("NavigationPolygonTemplate").duplicate() #NavigationPolygonInstance.new()
+			var navigation_polygon = get_node("NavigationPolygonTemplate").duplicate()
 			#navigation_polygon.navpoly = navpoly
 			navigation_polygon.position = start + Vector2(cell_position.x * tilemap.cell_size.x, cell_position.y * tilemap.cell_size.y)
 			var pos = navigation_polygon.position

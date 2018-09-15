@@ -36,21 +36,13 @@ func physics_move(settings, key_force):
 	
 	# Bewegung
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
-	
-	# Kollisionen
-	if get_slide_count()!=0:
-		var collision = get_slide_collision(0)
-		if collision == null:
-			return null
-		else:
-			return collision.collider
 
-func physics_fly(settings, key_force):
+func physics_fly(settings, direction):
 	if settings == null:
 		return
 	
 	# Beschleunigung berechnen
-	var acceleration = key_force * (settings.acceleration + settings.friction)
+	var acceleration = direction * (settings.acceleration + settings.friction)
 	var friction = Vector2(-sign(velocity.x) * settings.friction.x, -sign(velocity.y) * settings.friction.y)
 	var move_velocity = acceleration + velocity + friction + settings.gravity
 	
@@ -64,14 +56,6 @@ func physics_fly(settings, key_force):
 	
 	# Bewegung
 	velocity = move_and_slide(move_velocity, FLOOR_NORMAL)
-	
-	# Kollisionen
-	if get_slide_count()!=0:
-		var collision = get_slide_collision(0)
-		if collision == null:
-			return null
-		else:
-			return collision.collider
 
 func draw_dashed_line(start, end, dash_length, color, width):
 	var delta = dash_length * (end - start).normalized()
