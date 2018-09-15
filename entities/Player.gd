@@ -21,6 +21,8 @@ var key_force = Vector2(0, 0)
 var crosshair_position = Vector2(1, -1).normalized()
 
 var shoot_button_pressed = false
+var hook_button_pressed = false
+var hook_button_released = false
 var hook_active = false
 var hook_pulls = false
 
@@ -76,9 +78,11 @@ func _input(event):
 				shoot_button_pressed = false
 		elif event.button_index == BUTTON_RIGHT:
 			if event.pressed:
-				hook_active = true
+				hook_button_pressed = true
+				hook_button_released = false
 			else:
-				hook_active = false
+				hook_button_pressed = false
+				hook_button_released = true
 
 func _physics_process(delta):
 	# Projektile
@@ -91,7 +95,23 @@ func _physics_process(delta):
 		projectile.direction = (projectile.position - position).normalized()
 		projectile.update_physics()
 		print("bang")
-	
+		
+	if hook_button_pressed:
+		hook_active=true
+		
+		var hook = hook_scene.instance()
+		get_parent().add_child(hook)
+		hook.position = position + (hook_offset * crosshair_position)
+		hook.rotation = Vector2(1, 0).angle_to(crosshair_position)
+		hook.direction = (hook.position - position).normalized()
+		hook.update_physics()
+		move_unhooked(false)
+			
+		hook_button_pressed=false
+		
+	if hook_button_released:
+		hook_active=false
+		hook_button_released=false
 	# Haken
 	if hook_active:
 		if get_parent().has_node("Hook"):
@@ -101,14 +121,6 @@ func _physics_process(delta):
 				move_hooked(hook)
 			else:
 				move_unhooked(false)
-		else:
-			var hook = hook_scene.instance()
-			get_parent().add_child(hook)
-			hook.position = position + (hook_offset * crosshair_position)
-			hook.rotation = Vector2(1, 0).angle_to(crosshair_position)
-			hook.direction = (hook.position - position).normalized()
-			hook.update_physics()
-			move_unhooked(false)
 	else:
 		move_unhooked(false)
 		if get_parent().has_node("Hook"):
