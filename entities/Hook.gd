@@ -9,7 +9,6 @@ export var pull_strength = 400
 
 var enemy_type = preload("res://entities/Enemy.gd")
 
-onready var collision_area = get_node("CollisionArea")
 onready var player = get_node("../Player")
 
 func _ready():

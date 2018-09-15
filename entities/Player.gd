@@ -137,6 +137,23 @@ func _physics_process(delta):
 		if get_parent().has_node("Hook"):
 			remove_hook()
 	
+	for i in range(get_slide_count()):
+		var collision = get_slide_collision(i)
+		var entity = collision.collider
+		
+		if entity.get_class() == "TileMap":
+			var pos = collision.position - collision.normal*16 - entity.global_position
+			var tile_pos=pos/64
+				
+			var tile_x = floor(tile_pos.x)
+			var tile_y = floor(tile_pos.y)
+			
+			var cur_cell=entity.get_cell(tile_x,tile_y)
+			var cell_name = entity.tile_set.tile_get_name(cur_cell)
+			
+			if cell_name == "Lava":
+				die()
+	
 	# Unverwundbarkeit nach Treffer
 	invincibility -= delta
 	if invincibility > 0:
@@ -221,10 +238,11 @@ func _draw():
 	draw_dashed_line(Vector2(), crosshair_target, 8, Color(1, 0, 0, 0.5), 4)
 	
 	# Hook
-	var hook = get_parent().get_node("Hook")
-	if hook != null:
-		var hook_position = hook.global_position - position
-		draw_checkered_line(hook_position, Vector2(0, 0), 5, Color(0.8, 0.8, 0.8, 1))
+	if get_parent().has_node("Hook"):
+		var hook = get_parent().get_node("Hook")
+		if hook != null:
+			var hook_position = hook.global_position - position
+			draw_checkered_line(hook_position, Vector2(0, 0), 5, Color(0.8, 0.8, 0.8, 1))
 
 func draw_checkered_line(start, end, size, color):
 	var direction = end - start
