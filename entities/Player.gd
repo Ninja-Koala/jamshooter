@@ -33,12 +33,12 @@ func _input(event):
 	if event is InputEventKey:
 		key_force = Vector2()
 		
-		if Input.is_key_pressed(KEY_SPACE):
+		if Input.is_action_pressed("jump"):
 			key_force.y -= 1
 		
-		if Input.is_key_pressed(KEY_D):
+		if Input.is_action_pressed("move_right"):
 			key_force.x += 1
-		if Input.is_key_pressed(KEY_A):
+		if Input.is_action_pressed("move_left"):
 			key_force.x -= 1
 	elif event is InputEventMouseMotion:
 		crosshair_position = (crosshair_position + MOUSE_SENSITIVITY * event.relative).normalized()
