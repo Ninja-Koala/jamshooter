@@ -35,3 +35,6 @@ func _physics_process(delta):
 	
 	# Zähle die Zeit runter
 	direction_time -= delta
+	
+	# Schaden
+	try_hit_player()

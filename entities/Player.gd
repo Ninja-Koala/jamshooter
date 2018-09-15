@@ -42,6 +42,7 @@ onready var projectile_offset = get_node("ProjectileSpawn").position.length()
 onready var hook_offset = get_node("HookSpawn").position.length()
 
 func _ready():
+	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	hitpoints = 50
 

@@ -1,10 +1,10 @@
 extends "res://entities/bat/BatEnemyBase.gd"
 
-const ACCELERATION = Vector2(5, 5)
-const MAX_VELOCITY = Vector2(200, 200)
+const ACCELERATION = Vector2(50, 50)
+const MAX_VELOCITY = Vector2(220, 220)
 const FRICTION = Vector2(30, 30)
 
-var key_force = Vector2(0, 0)
+var path
 
 func _ready():
 	body_scene = preload("res://entities/bat/DeadVampireGhost.tscn")
@@ -16,5 +16,32 @@ func _ready():
 	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), 0, MAX_VELOCITY)
 
 func _physics_process(delta):
-	# Laufe geradeaus
-	key_force = Vector2(1, 0)
+	# Finde einen Pfad zum Spieler
+	path = get_path_to_player()
+	print(path)
+	update()
+	
+	# Steuere den ersten Punkt an
+	if path != null && path.size() > 0:
+		var target = null
+		for p in path:
+			if (p - global_position).length_squared() > 2:
+				target = p
+				break
+		
+		var direction = (target - global_position).normalized()
+		
+		# Fliege da hin
+		physics_fly(physics, direction)
+	else:
+		# Fliege direkt zum Spieler
+		var direction = (player.global_position - global_position).normalized()
+		physics_fly(physics, direction)
+	
+	# Schaden
+	try_hit_player()
+
+func _draw():
+	if path != null:
+		for p in path:
+			draw_circle(p - global_position, 5, Color(1, 0, 0, 1))

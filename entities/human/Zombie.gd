@@ -26,16 +26,27 @@ func _physics_process(delta):
 	path = get_path_to_player()
 	update()
 	
-	# Weg zum Spieler ermitteln
-	var player_direction = player.global_position - global_position;
-	key_force = Vector2(sign(player_direction.x), 0)
+	# Steuere den nächsten Punkt an
+	var direction = null
+	if path != null && path.size() > 0:
+		for p in path:
+			if (p - global_position).length() > 50: #Threshold, damit sie sich nicht zu sehr mit nahen Punkten befassen
+				direction = p - global_position
+				break
 	
-	if abs(player_direction.x) < MIN_DISTANCE.x:
+	if direction == null:
+		# Direkten Weg zum Spieler nehmen
+		direction = player.global_position - global_position
+	
+	# Bewege in diese Richtung
+	key_force = Vector2(sign(direction.x), 0)
+	if abs(direction.x) < MIN_DISTANCE.x:
 		key_force.x = 0
 	
 	# Stillstand?
 	if velocity.length_squared() == 0:
 		still_time += delta
+		print(direction.x)
 	else:
 		still_time = 0
 	
@@ -44,7 +55,7 @@ func _physics_process(delta):
 		key_force.y = -1
 	
 	# Physik
-	var collider = physics_move(physics, key_force)
+	physics_move(physics, key_force)
 	
 	# Lavatod
 	for i in range(get_slide_count()):

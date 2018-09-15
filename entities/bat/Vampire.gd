@@ -21,9 +21,14 @@ func _physics_process(delta):
 	print(path)
 	update()
 	
-	# Steuere den ersten Punkt an
+	# Steuere den nächsten Punkt an
 	if path != null && path.size() > 0:
-		var target = path[0]
+		var target = null
+		for p in path:
+			if (p - global_position).length_squared() > 2:
+				target = p
+				break
+		
 		var direction = (target - global_position).normalized()
 		
 		# Fliege da hin
@@ -32,6 +37,9 @@ func _physics_process(delta):
 		# Fliege direkt zum Spieler
 		var direction = (player.global_position - global_position).normalized()
 		physics_fly(physics, direction)
+	
+	# Schaden
+	try_hit_player()
 
 func _draw():
 	if path != null:

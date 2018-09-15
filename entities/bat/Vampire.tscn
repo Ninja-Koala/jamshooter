@@ -6,16 +6,15 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
+extents = Vector2( 4, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 33.3333, 34.6667 )
+extents = Vector2( 50, 26 )
 
 [node name="Vampire" type="KinematicBody2D"]
 
-scale = Vector2( 1.5, 0.75 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -27,7 +26,7 @@ level = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 5.33333, 10.6667 )
+scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
