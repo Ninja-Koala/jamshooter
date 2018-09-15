@@ -1,4 +1,4 @@
-extends "res://entities/HumanEnemyBase.gd"
+extends "res://entities/human/HumanEnemyBase.gd"
 
 const ACCELERATION_X = 5
 const JUMP_VELOCITY_Y = -800
@@ -15,9 +15,8 @@ var still_time = 0
 var path
 
 func _ready():
-	body_scene = preload("res://entities/DeadEnemy.tscn")
-	next_scene = preload("res://entities/Ghost.tscn")
-	level = 1
+	body_scene = preload("res://entities/human/DeadZombie.tscn")
+	next_scene = preload("res://entities/human/Ghost.tscn")
 	respawn_time = 3
 	hitpoints = 10
 	

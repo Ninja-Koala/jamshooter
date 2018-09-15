@@ -11,6 +11,9 @@ func destroy():
 	get_parent().remove_child(self)
 
 func physics_move(settings, key_force):
+	if settings == null:
+		return
+	
 	# Beschleunigung berechnen
 	var acceleration = Vector2(key_force.x * (settings.acceleration.x + settings.friction.x), 0)
 	var friction = Vector2(-sign(velocity.x) * settings.friction.x, -sign(velocity.y) * settings.friction.y)
@@ -42,6 +45,9 @@ func physics_move(settings, key_force):
 		return collision.collider
 
 func physics_fly(settings, key_force):
+	if settings == null:
+		return
+	
 	# Beschleunigung berechnen
 	var acceleration = key_force * (settings.acceleration + settings.friction)
 	var friction = Vector2(-sign(velocity.x) * settings.friction.x, -sign(velocity.y) * settings.friction.y)
