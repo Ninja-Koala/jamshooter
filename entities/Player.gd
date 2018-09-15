@@ -30,11 +30,11 @@ var hook_pulls = false
 
 var invincibility = 0
 
-onready var collision_box = get_node("CollisionBox")
-onready var projectile_scene = load("res://entities/PlayerProjectile.tscn")
-onready var projectile_offset = get_node("ProjectileSpawn").position.length()
+var projectile_scene = preload("res://entities/PlayerProjectile.tscn")
+var hook_scene = preload("res://entities/Hook.tscn")
 
-onready var hook_scene = load("res://entities/Hook.tscn")
+onready var collision_box = get_node("CollisionBox")
+onready var projectile_offset = get_node("ProjectileSpawn").position.length()
 onready var hook_offset = get_node("HookSpawn").position.length()
 
 func _ready():
