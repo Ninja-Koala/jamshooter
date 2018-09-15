@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Ghost.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/Mob1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Door.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -11,7 +12,7 @@ vertices = PoolVector2Array( 8, -32, 8, 32, -56, 32, -56, -32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -56, -32, -56, 32, 8, 32, 8, -32 ) ]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
@@ -64,5 +65,11 @@ position = Vector2( 312.886, 224.462 )
 position = Vector2( 56, 32 )
 navpoly = SubResource( 1 )
 enabled = true
+
+[node name="Door" parent="." index="6" instance=ExtResource( 5 )]
+
+position = Vector2( 1568.25, 319.928 )
+scale = Vector2( 8, 8 )
+_sections_unfolded = [ "Transform" ]
 
 
