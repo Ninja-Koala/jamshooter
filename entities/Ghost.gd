@@ -4,7 +4,6 @@ const ACCELERATION_FACTOR = Vector2(15, 20)
 const MAX_SPEED = Vector2(120, 200)
 const FRICTION = Vector2(10, 10)
 
-var move_force = Vector2(0, 0)
 var speed = Vector2(0, 0)
 
 func _ready():
@@ -14,11 +13,10 @@ func die():
 	print("argh!")
 	destroy()
 
-func _process(delta):
-	var move_unscaled = player.get_transform().get_origin()-get_transform().get_origin()
-	move_force=move_unscaled / move_unscaled.length()
-
 func _physics_process(delta):
+	# Weg zum Spieler
+	var move_force = (player.global_position - global_position).normalized()
+	
 	# Beschleunigung berechnen
 	var acceleration = move_force * ACCELERATION_FACTOR
 	var friction = Vector2(-sign(speed.x) * FRICTION.x, -sign(speed.y) * FRICTION.y)

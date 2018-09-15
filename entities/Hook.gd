@@ -5,20 +5,17 @@ const VELOCITY = 40
 export var direction = Vector2(1, 0)
 
 export var hooked = false
-
 export var pull_strength = 400
 
+var enemy_type = preload("res://entities/Enemy.gd")
+
 onready var collision_area = get_node("CollisionArea")
-onready var enemy_type = preload("res://entities/Enemy.gd")
-
-onready var player_type = preload("res://entities/Player.gd")
-
+onready var player = get_node("../Player")
 
 func _ready():
 	pass
 
 func _physics_process(delta):
-	
 	update_physics()
 
 func update_physics():
@@ -36,3 +33,4 @@ func update_physics():
 						hooked = true
 					elif cell_name == "Unhookable Wall":
 						get_parent().remove_child(self)
+						player.update()

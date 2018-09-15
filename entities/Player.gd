@@ -20,6 +20,8 @@ var key_force = Vector2(0, 0)
 
 var crosshair_position = Vector2(1, -1).normalized()
 
+var jumped = false
+
 var shoot_button_pressed = false
 var hook_button_pressed = false
 var hook_button_released = false
@@ -28,9 +30,6 @@ var hook_pulls = false
 
 var invincibility = 0
 
-
-var Jumped = false
-var JumpedBefore = false
 onready var collision_box = get_node("CollisionBox")
 onready var projectile_scene = load("res://entities/PlayerProjectile.tscn")
 onready var projectile_offset = get_node("ProjectileSpawn").position.length()
@@ -59,12 +58,8 @@ func _input(event):
 		
 		if Input.is_action_pressed("jump"):
 			key_force.y -= 1
-			JumpedBefore=Jumped
-			Jumped=true
-			
 		else:
-			JumpedBefore=Jumped
-			Jumped=false
+			jumped = false
 		
 		if Input.is_action_pressed("move_right"):
 			key_force.x += 1
@@ -110,12 +105,14 @@ func _physics_process(delta):
 		hook.direction = (hook.position - position).normalized()
 		hook.update_physics()
 		move_unhooked(false)
-			
+		
 		hook_button_pressed=false
 		
 	if hook_button_released:
 		hook_active=false
 		hook_button_released=false
+		update()
+	
 	# Haken
 	if hook_active:
 		if get_parent().has_node("Hook"):
@@ -155,8 +152,9 @@ func move_unhooked(jump_ungrounded):
 	
 	# Gravitation
 	if is_on_floor() or jump_ungrounded:
-		if key_force.y < 0:
+		if key_force.y < 0 && !jumped:
 			move_velocity.y = JUMP_VELOCITY_Y
+			jumped = true
 	
 	# Geschwindigkeit begrenzen
 	if abs(move_velocity.x) > MAX_VELOCITY_X:
@@ -168,7 +166,7 @@ func move_unhooked(jump_ungrounded):
 	move(move_velocity)
 
 func move_hooked(hook):
-	if key_force.y==0 or JumpedBefore:
+	if key_force.y == 0:
 		var dir = (hook.position-position).normalized()
 		var dir_scaled = dir*hook.pull_strength
 		var key_force_dir = Vector2(key_force.x, 0)
@@ -180,6 +178,7 @@ func move_hooked(hook):
 	else:
 		move_unhooked(true)
 		hook_active = false
+		update()
 
 func _draw():
 	# Crosshair
@@ -190,8 +189,8 @@ func _draw():
 	draw_dashed_line(Vector2(), crosshair_target, 8, Color(1, 0, 0, 0.5), 4)
 	
 	# Hook
-	if hook_active:
-		var hook = get_parent().get_node("Hook")
+	var hook = get_parent().get_node("Hook")
+	if hook != null:
 		var hook_position = hook.global_position - position
 		draw_checkered_line(hook_position, Vector2(0, 0), 5, Color(0.8, 0.8, 0.8, 1))
 
