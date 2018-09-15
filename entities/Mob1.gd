@@ -5,15 +5,20 @@ const MAX_SPEED = Vector2(120, 200)
 const FRICTION = Vector2(10, 10)
 
 onready var player = get_parent().get_node("Player")
+onready var dead_scene = load("res://entities/DeadEnemy.tscn")
 
 var move_force = Vector2(0, 0)
 var speed = Vector2(0, 0)
 
 func _ready():
 	hitpoints = 10
+	
 
 func die():
 	print("argh!")
+	var dead = dead_scene.instance()
+	get_parent().add_child(dead)
+	dead.position = position
 	destroy()
 
 func _process(delta):
