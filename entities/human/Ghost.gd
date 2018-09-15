@@ -1,11 +1,15 @@
-extends "res://entities/HumanEnemyBase.gd"
+extends "res://entities/human/HumanEnemyBase.gd"
 
 const ACCELERATION = Vector2(15, 15)
 const MAX_VELOCITY = Vector2(120, 120)
 const FRICTION = Vector2(10, 10)
 
 func _ready():
+	body_scene = preload("res://entities/human/DeadGhost.tscn")
+	next_scene = preload("res://entities/human/Ghost.tscn")
 	hitpoints = 10
+	respawn_time = 3
+	
 	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), 0, MAX_VELOCITY)
 
 func _physics_process(delta):
