@@ -10,6 +10,7 @@ const MIN_DISTANCE = Vector2(1, 0)
 const MAX_STILL_TIME = 0.3
 
 var key_force = Vector2(0, 0)
+var was_on_floor = false
 
 export var direction = 1
 
@@ -31,12 +32,18 @@ func _physics_process(delta):
 	physics_move(physics, key_force)
 	
 	# Über eine Kante gelaufen?
-	if !is_on_floor() || is_on_wall():
+	if is_on_floor():
+		was_on_floor = true
+	if was_on_floor && !is_on_floor() || is_on_wall():
+		# Bewegung zurücksetzen
+		position += 3 * (position_before - position)
+		was_on_floor = false
+		
 		# Richtung umkehren und Bewegung stattdessen in die andere Richtung
 		direction = -direction
-		key_force = Vector2(direction, 0)
-		position = position_before + key_force
-		physics_move(physics, key_force)
+		#key_force = Vector2(direction, 0)
+		#position = position_before + key_force
+		#physics_move(physics, key_force)
 	
 	# Schaden
 	try_hit_player()
