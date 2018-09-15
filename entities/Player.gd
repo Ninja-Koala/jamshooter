@@ -65,10 +65,8 @@ func _input(event):
 		
 		if Input.is_action_pressed("jump"):
 			key_force.y -= 1
-			print("jump 1")
 		else:
 			jumped = false
-			print("jump 2")
 		
 		if Input.is_action_pressed("move_right"):
 			key_force.x += 1

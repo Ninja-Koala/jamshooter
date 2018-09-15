@@ -48,7 +48,7 @@ _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="Mob1" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 312.886, 224.462 )
+position = Vector2( -91.2988, 461.628 )
 
 [node name="NavigationPolygonTemplate" type="NavigationPolygonInstance" parent="." index="3"]
 
