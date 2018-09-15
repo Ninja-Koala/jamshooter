@@ -30,3 +30,6 @@ func _physics_process(delta):
 	
 	# Bewegung
 	speed = move_and_slide(move_speed)
+	
+	# Spieler verletzen
+	try_hit_player()
