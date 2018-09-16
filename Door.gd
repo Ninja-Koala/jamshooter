@@ -20,13 +20,13 @@ func update_physics():
 		if not get_parent().get_node("Key"):
 			locked=false
 		else:
-			if not get_node("Lock"):
+			if not has_node("Lock"):
 				var lock_obj = lock_scene.instance()
 				add_child(lock_obj)
 				lock_obj.position = Vector2(0,0)
 				print("Lock")
 	else:
-		if get_node("Lock"):
+		if has_node("Lock"):
 			remove_child(get_node("Lock"))
 		var collisions = collision_area.get_overlapping_bodies()
 		for entity in collisions:
