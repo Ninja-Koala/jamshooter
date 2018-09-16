@@ -11,7 +11,7 @@ func _ready():
 	next_scene = preload("res://entities/bat/VampireGhost.tscn")
 	level = 1
 	respawn_time = 3
-	hitpoints = 2
+	hitpoints = 5
 	
 	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), 0, MAX_VELOCITY)
 

@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 24, 12 )
 
-[node name="Node2D" type="KinematicBody2D" index="0"]
+[node name="Node2D" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 4
@@ -17,16 +17,17 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="CollisionShape2D" index="0"]
 
 position = Vector2( 0, -3.57628e-007 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
-shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 
