@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/human/Zombie.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/bat/Vampire.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/wallshooter/Wallwalker.tscn" type="PackedScene" id=4]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/Key.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 
@@ -61,22 +62,27 @@ position = Vector2( 742.299, 231.712 )
 position = Vector2( 594.659, 436.767 )
 scale = Vector2( -1, 1 )
 
-[node name="Player" parent="." index="1" instance=ExtResource( 5 )]
+[node name="Key" parent="Environment" index="5" instance=ExtResource( 5 )]
+
+position = Vector2( 861.564, 287.883 )
+
+[node name="Door" parent="Environment" index="6" instance=ExtResource( 6 )]
+
+position = Vector2( -287.927, 448.289 )
+scale = Vector2( 8, 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 7 )]
 
 position = Vector2( -26.8962, 460.568 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+hasKey = false
 
 [node name="NavigationPolygonTemplate" type="NavigationPolygonInstance" parent="." index="2"]
 
 position = Vector2( 56, 32 )
 navpoly = SubResource( 1 )
 enabled = true
-
-[node name="Door" parent="." index="3" instance=ExtResource( 6 )]
-
-position = Vector2( -287.927, 448.289 )
-scale = Vector2( 8, 8 )
-_sections_unfolded = [ "Transform" ]
 
 

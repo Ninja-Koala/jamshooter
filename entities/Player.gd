@@ -17,6 +17,9 @@ const AIRCONTROL_GRAVITY = 500
 
 const INVINCIBILITY_DURATION = 1
 
+export var hasKey = false
+
+
 var key_force = Vector2(0, 0)
 var knockback = Vector2(0, 0)
 
@@ -116,6 +119,9 @@ func _input(event):
 				update()
 
 func _physics_process(delta):
+	if hasKey:
+		print("Has Key")
+	
 	# Projektile
 	if shoot_button_pressed:
 		shoot_button_pressed = false
