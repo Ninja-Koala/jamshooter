@@ -1,6 +1,6 @@
 extends "res://entities/Entity.gd"
 
-const GRAVITY = 40
+const GRAVITY = Vector2(0, 40)
 const MAX_VELOCITY = Vector2(200, 1000)
 
 var level
@@ -22,9 +22,12 @@ func _physics_process(delta):
 	respawn_time -= delta
 	if respawn_time <= 0:
 		if next_scene != null:
-			print(next_scene)
-			var next = next_scene.instance()
-			next.position = position
-			next.level = level
-			get_parent().add_child(next)
+			spawn_next()
 		destroy()
+
+func spawn_next():
+	var next = next_scene.instance()
+	next.position = position
+	next.level = level
+	get_parent().add_child(next)
+	return next

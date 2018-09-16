@@ -16,11 +16,11 @@ extents = Vector2( 50, 26 )
 [node name="Vampire" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 16
+collision_mask = 16
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility" ]
 hitpoints = 1
 level = 0
 

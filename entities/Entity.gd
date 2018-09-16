@@ -26,7 +26,7 @@ func physics_move(settings, key_force):
 	# Gravitation
 	if is_on_floor():
 		if key_force.y < 0:
-			move_velocity.y = settings.jump_velocity - settings.gravity
+			move_velocity.y = settings.jump_velocity - settings.gravity.y
 	
 	# Geschwindigkeit begrenzen
 	if abs(move_velocity.x) > settings.max_velocity.x:

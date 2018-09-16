@@ -10,10 +10,14 @@ export var level = 0
 func die():
 	# Spawne die Leiche
 	if body_scene != null:
-		var body = body_scene.instance()
-		get_parent().add_child(body)
-		body.position = position
-		body.init(next_level, next_scene, respawn_time)
+		spawn_body()
 	
 	# Entferne mich
 	destroy()
+
+func spawn_body():
+	var body = body_scene.instance()
+	get_parent().add_child(body)
+	body.position = position
+	body.init(next_level, next_scene, respawn_time)
+	return body

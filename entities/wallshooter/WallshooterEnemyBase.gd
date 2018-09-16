@@ -2,20 +2,30 @@ extends "res://entities/PhaseEnemy.gd"
 
 const GRAVITY = Vector2(50, 0)
 
-onready var floor_scan_bottom = get_node("WallScanArea/bottom")
-onready var floor_scan_top = get_node("WallScanArea/top")
+onready var floor_scan_bottom = get_node("Content/WallScanArea/bottom")
+onready var floor_scan_top = get_node("Content/WallScanArea/top")
+onready var content_node = get_node("Content")
 
 var initialized = false
 
 var direction = 1
 var key_force
+export var flipped = false
 
 func enemy_process(delta):
 	# Noch nicht initialisiert?
 	if !initialized:
-		if get_transform().get_scale().x < 0:
+		if flipped:
+			var transform = content_node.get_transform()
+			transform = transform.scaled(Vector2(-1, 1))
+			content_node.set_transform(transform)
+		
+		flipped = content_node.get_global_transform()[0][0] < 0
+		if flipped:
 			physics.gravity *= -1
-			print("turn")
+			print("turned")
+		else:
+			print("not turned")
 		initialized = true
 	
 	# Gibt es noch Wand?
@@ -46,3 +56,9 @@ func enemy_process(delta):
 	# Nicht bewegt?
 	if velocity_before == Vector2(0, 0) && velocity == Vector2(0, 0):
 		direction = -direction
+
+func spawn_body():
+	var body = .spawn_body()
+	if flipped:
+		body.flipped = true
+	return body

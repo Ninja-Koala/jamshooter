@@ -48,5 +48,9 @@ func enemy_process(delta):
 	key_force = Vector2(direction, 0)
 	
 	# Bewegung
-	var position_before = position
+	var velocity_before = velocity
 	physics_move(physics, key_force)
+	
+	# Stehen geblieben?
+	if velocity_before == Vector2(0, 0) && velocity == Vector2(0, 0):
+		direction = -direction

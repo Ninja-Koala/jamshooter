@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/wallshooter/DeadWallwalker.gd" type="Script" id=1]
+[ext_resource path="res://sprites/dead_wand_grabbler.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 12, 16 )
+
+[node name="Node2D" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 4
+collision_mask = 4
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+flipped = false
+
+[node name="Content" type="Node2D" parent="." index="0"]
+
+[node name="Sprite" type="Sprite" parent="Content" index="0"]
+
+position = Vector2( 0, -3.57628e-007 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content" index="1"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+

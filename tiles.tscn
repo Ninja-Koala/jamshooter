@@ -26,7 +26,7 @@ extents = Vector2( 4, 4 )
 custom_solver_bias = 0.0
 extents = Vector2( 4, 4 )
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -99,6 +99,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lava/StaticBody2D" index="0"]
 
