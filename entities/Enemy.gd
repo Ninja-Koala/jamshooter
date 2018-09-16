@@ -4,6 +4,10 @@ onready var hit_area = get_node("HitArea")
 onready var player = get_node("../../Player")
 onready var navigation = get_node("../Navigation")
 
+func _ready():
+	if hit_area == null:
+		hit_area = get_node("Content/HitArea")
+
 func try_hit_player():
 	if player != null:
 		if hit_area != null:

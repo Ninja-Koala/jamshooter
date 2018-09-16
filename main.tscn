@@ -8,7 +8,7 @@
 [ext_resource path="res://entities/wallshooter/Wallracer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=7]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -62,5 +62,6 @@ scale = Vector2( -1, 1 )
 position = Vector2( 320, 432 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+hasKey = false
 
 

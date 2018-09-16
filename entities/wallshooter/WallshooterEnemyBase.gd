@@ -14,6 +14,7 @@ var key_force
 export var flipped = false
 
 func enemy_process(delta):
+	try_hit_player()
 	# Noch nicht initialisiert?
 	if !initialized:
 		if flipped:
