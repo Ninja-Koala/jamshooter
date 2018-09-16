@@ -17,6 +17,7 @@ const AIRCONTROL_GRAVITY = 500
 
 const INVINCIBILITY_DURATION = 1
 const SHOOT_DURATION = 0.3
+const MAX_HEALTH = 10
 
 export var hasKey = false
 
@@ -56,7 +57,7 @@ var healthbar
 func _ready():
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	hitpoints = 10
+	hitpoints = MAX_HEALTH
 	
 	var progress_bar = progress_bar_scene.instance()
 	add_child(progress_bar)
@@ -80,6 +81,10 @@ func take_damage(damage, attacker = null):
 		if attacker != null:
 			var direction = (attacker.global_position - global_position).normalized()
 			knockback = -KNOCKBACK_VELOCITY * direction
+			
+func heal(damage):
+	hitpoints = min(hitpoints + damage, MAX_HEALTH)
+	healthbar.value = hitpoints
 
 func die():
 	var hook = get_parent().get_node("Hook")

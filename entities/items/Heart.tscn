@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/items/Heart.gd" type="Script" id=1]
+[ext_resource path="res://sprites/heart.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 36, 28 )
+
+[node name="Heart" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 16
+collision_mask = 16
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 8, 8 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HitArea" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShapeHit" type="CollisionShape2D" parent="HitArea" index="0"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+

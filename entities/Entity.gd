@@ -3,8 +3,8 @@ extends KinematicBody2D
 const DEBUG = false
 const FLOOR_NORMAL = Vector2(0, -1)
 
-var physics_type = preload("res://entities/PhysicsSettings.gd")
-var physics = physics_type.new()
+onready var physics_type = preload("res://entities/PhysicsSettings.gd")
+onready var physics = physics_type.new()
 
 var velocity = Vector2(0, 0)
 
