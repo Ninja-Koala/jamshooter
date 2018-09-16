@@ -23,7 +23,7 @@ func _ready():
 	
 	physics.init(Vector2(ACCELERATION_X, 0), FRICTION, GRAVITY, 0, MAX_VELOCITY)
 
-func _physics_process(delta):
+func enemy_process(delta):
 	# Laufe geradeaus
 	key_force = Vector2(direction, 0)
 	

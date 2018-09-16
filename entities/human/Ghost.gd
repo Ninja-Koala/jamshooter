@@ -12,7 +12,7 @@ func _ready():
 	
 	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), 0, MAX_VELOCITY)
 
-func _physics_process(delta):
+func enemy_process(delta):
 	# Weg zum Spieler
 	var move_force = (player.global_position - global_position).normalized()
 	

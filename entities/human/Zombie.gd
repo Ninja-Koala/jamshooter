@@ -22,7 +22,7 @@ func _ready():
 	
 	physics.init(Vector2(ACCELERATION_X, 0), FRICTION, GRAVITY, JUMP_VELOCITY_Y, MAX_VELOCITY)
 
-func _physics_process(delta):
+func enemy_process(delta):
 	path = get_path_to_player()
 	update()
 	

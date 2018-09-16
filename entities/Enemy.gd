@@ -17,3 +17,12 @@ func get_path_to_player():
 		result.append(p + navigation.global_position)
 		
 	return result
+
+func enemy_process(delta):
+	pass
+
+func _physics_process(delta):
+	if player == null:
+		return
+	
+	enemy_process(delta)

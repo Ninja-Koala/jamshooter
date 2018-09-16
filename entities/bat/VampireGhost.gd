@@ -15,7 +15,7 @@ func _ready():
 	
 	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), 0, MAX_VELOCITY)
 
-func _physics_process(delta):
+func enemy_process(delta):
 	# Finde einen Pfad zum Spieler
 	path = get_path_to_player()
 	print(path)
