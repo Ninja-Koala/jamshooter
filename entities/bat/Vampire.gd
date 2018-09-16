@@ -18,7 +18,6 @@ func _ready():
 func enemy_process(delta):
 	# Finde einen Pfad zum Spieler
 	path = get_path_to_player()
-	print(path)
 	update()
 	
 	# Steuere den ersten Punkt an
