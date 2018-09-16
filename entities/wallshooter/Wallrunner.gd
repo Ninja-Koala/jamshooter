@@ -18,9 +18,9 @@ var wait_time = 0
 func _ready():
 	physics.init(Vector2(0, ACCELERATION_Y), FRICTION, GRAVITY, 0, MAX_VELOCITY)
 	
-	hitpoints = 4
 	next_scene = preload("res://entities/wallshooter/Wallracer.tscn")
 	body_scene = preload("res://entities/wallshooter/DeadWallrunner.tscn")
+	hitpoints = 4
 	respawn_time = 3
 
 func enemy_process(delta):

@@ -7,7 +7,7 @@ const MAX_VELOCITY = Vector2(50, 200)
 func _ready():
 	physics.init(Vector2(0, ACCELERATION_Y), FRICTION, GRAVITY, 0, MAX_VELOCITY)
 	
-	hitpoints = 4
 	next_scene = preload("res://entities/wallshooter/Wallrunner.tscn")
 	body_scene = preload("res://entities/wallshooter/DeadWallwalker.tscn")
+	hitpoints = 4
 	respawn_time = 3

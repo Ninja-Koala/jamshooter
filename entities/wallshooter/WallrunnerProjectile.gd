@@ -1,6 +1,6 @@
 extends Node2D
 
-const VELOCITY = 20
+const VELOCITY = 10
 
 export var direction = Vector2(1, 0)
 export var damage = 1
