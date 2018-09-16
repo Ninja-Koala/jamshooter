@@ -94,4 +94,8 @@ audio_bus_name = "Master"
 position = Vector2( 22, 38 )
 shape = SubResource( 4 )
 
+[node name="ProjectileOffset" type="Position2D" parent="Content" index="3"]
+
+position = Vector2( -42, 0 )
+
 

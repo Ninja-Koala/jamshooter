@@ -23,7 +23,6 @@ func enemy_process(delta):
 	# Steuere den ersten Punkt an
 	var direction = null
 	if path != null && path.size() > 0:
-		var target = null
 		for p in path:
 			if (p - global_position).length_squared() > 2:
 				direction = (p - global_position).normalized()
@@ -35,6 +34,9 @@ func enemy_process(delta):
 			direction = (player.global_position - global_position).normalized()
 		else:
 			direction = Vector2(0, 0)
+	
+	# Fliege da hin
+	physics_fly(physics, direction)
 
 func _draw():
 	if DEBUG:

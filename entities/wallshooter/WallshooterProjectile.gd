@@ -6,9 +6,9 @@ export var direction = Vector2(1, 0)
 export var damage = 1
 
 onready var collision_area = get_node("CollisionArea")
-onready var enemy_type = preload("res://entities/Enemy.gd")
+onready var player_type = preload("res://entities/Player.gd")
 
-var lifetime = 3
+export var lifetime = 1
 
 func _ready():
 	pass
@@ -26,7 +26,7 @@ func update_physics():
 	if collisions.size() != 0:
 		get_parent().remove_child(self)
 		
-		if collisions[0] is enemy_type:
+		if collisions[0] is player_type:
 			collisions[0].take_damage(damage)
 	
 	collisions = collision_area.get_overlapping_areas()
@@ -34,6 +34,6 @@ func update_physics():
 	if collisions.size() != 0:
 		get_parent().remove_child(self)
 		
-		if collisions[0].get_parent() is enemy_type:
+		if collisions[0].get_parent() is player_type:
 			collisions[0].get_parent().take_damage(damage)
 	

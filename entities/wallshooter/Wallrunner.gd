@@ -5,15 +5,17 @@ const FRICTION = Vector2(10, 10)
 const MAX_VELOCITY = Vector2(50, 300)
 
 const SHOOT_TIME = 2
-const WAIT_TIME_BEFORE = 0.5
-const WAIT_TIME_AFTER = 0.5
+const WAIT_TIME_BEFORE = 0.2
+const WAIT_TIME_AFTER = 0.8
+const PROJECTILE_LIFETIME = 0.2
+
+onready var projectile_offset = get_node("Content/ProjectileOffset")
 
 var time_until_shot = SHOOT_TIME
 var shoot_phase = 0
 var wait_time = 0
 
 func _ready():
-	print(get_transform().get_scale().x)
 	physics.init(Vector2(0, ACCELERATION_Y), FRICTION, GRAVITY, 0, MAX_VELOCITY)
 	
 	hitpoints = 4
@@ -36,10 +38,17 @@ func enemy_process(delta):
 			wait_time -= delta
 			if wait_time <= 0:
 				# Schieß
-				shoot_at_player()
-				shoot_phase = 2
-				shoot_phase = 2
-				wait_time = WAIT_TIME_AFTER
+				var shot = shoot_at_player(projectile_offset, PROJECTILE_LIFETIME)
+				
+				# Geschossen?
+				if shot:
+					# Starte Warte
+					shoot_phase = 2
+					wait_time = WAIT_TIME_AFTER
+				else:
+					# Mach normal weiter
+					shoot_phase = 0
+					time_until_shot = SHOOT_TIME
 		else:
 			# Warte
 			wait_time -= delta
@@ -49,6 +58,3 @@ func enemy_process(delta):
 				time_until_shot = SHOOT_TIME
 	else:
 		.enemy_process(delta)
-
-func shoot_at_player():
-	print("shoot")
