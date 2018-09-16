@@ -16,6 +16,7 @@ const AIRCONTROL_ACCELERATION=550
 const AIRCONTROL_GRAVITY = 500
 
 const INVINCIBILITY_DURATION = 1
+const SHOOT_DURATION = 0.3
 
 var key_force = Vector2(0, 0)
 var knockback = Vector2(0, 0)
@@ -33,6 +34,7 @@ var hook_active = false
 var hook_pulls = false
 
 var invincibility = 0
+var time_until_shot = 0
 
 var projectile_scene = preload("res://entities/PlayerProjectile.tscn")
 var hook_scene = preload("res://entities/Hook.tscn")
@@ -116,15 +118,19 @@ func _input(event):
 				update()
 
 func _physics_process(delta):
+	# Schusszeit runterzählen
+	time_until_shot -= delta
+	
 	# Projektile
-	if shoot_button_pressed:
-		shoot_button_pressed = false
+	if shoot_button_pressed && time_until_shot <= 0:
+		#shoot_button_pressed = false
 		var projectile = projectile_scene.instance()
 		get_parent().add_child(projectile)
 		projectile.position = position + (projectile_offset * crosshair_position)
 		projectile.rotation = Vector2(1, 0).angle_to(crosshair_position)
 		projectile.direction = (projectile.position - position).normalized()
 		projectile.update_physics()
+		time_until_shot = SHOOT_DURATION
 		print("bang")
 	
 	# Hook
