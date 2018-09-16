@@ -18,6 +18,9 @@ const AIRCONTROL_GRAVITY = 500
 const INVINCIBILITY_DURATION = 1
 const SHOOT_DURATION = 0.3
 
+export var hasKey = false
+
+
 var key_force = Vector2(0, 0)
 var knockback = Vector2(0, 0)
 
