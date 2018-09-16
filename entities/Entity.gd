@@ -17,7 +17,7 @@ func physics_move(settings, key_force):
 	# Beschleunigung berechnen
 	var acceleration = Vector2(key_force.x * (settings.acceleration.x + settings.friction.x), 0)
 	var friction = Vector2(-sign(velocity.x) * settings.friction.x, -sign(velocity.y) * settings.friction.y)
-	var move_velocity = velocity + acceleration + friction + Vector2(0, settings.gravity)
+	var move_velocity = velocity + acceleration + friction + settings.gravity
 	
 	# Anhalten, wenn zu langsam
 	if abs(move_velocity.x) <= 1.1 * settings.friction.x:

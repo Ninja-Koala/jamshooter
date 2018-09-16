@@ -4,7 +4,7 @@ const ACCELERATION_X = 5
 const JUMP_VELOCITY_Y = -800
 const MAX_VELOCITY = Vector2(200, 1000)
 const FRICTION = Vector2(30, 0)
-const GRAVITY = 40
+const GRAVITY = Vector2(0, 40)
 
 const MIN_DISTANCE = Vector2(1, 0)
 const MAX_STILL_TIME = 0.3
@@ -77,9 +77,6 @@ func enemy_process(delta):
 			
 			if cell_name == "Lava":
 				destroy()
-	
-	# Schaden
-	try_hit_player()
 
 func _draw():
 	if path != null:

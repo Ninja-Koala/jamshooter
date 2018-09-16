@@ -10,7 +10,7 @@ func _ready():
 	hitpoints = 10
 	respawn_time = 3
 	
-	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), 0, MAX_VELOCITY)
+	physics.init(ACCELERATION, FRICTION, Vector2(0, 0), MAX_VELOCITY)
 
 func enemy_process(delta):
 	# Weg zum Spieler
@@ -18,6 +18,3 @@ func enemy_process(delta):
 	
 	# Bewegung
 	physics_fly(physics, move_force)
-	
-	# Spieler verletzen
-	try_hit_player()

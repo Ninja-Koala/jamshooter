@@ -29,3 +29,6 @@ func _physics_process(delta):
 		return
 	
 	enemy_process(delta)
+	
+	# Schaden
+	try_hit_player()

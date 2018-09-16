@@ -37,9 +37,6 @@ func enemy_process(delta):
 		# Fliege direkt zum Spieler
 		var direction = (player.global_position - global_position).normalized()
 		physics_fly(physics, direction)
-	
-	# Schaden
-	try_hit_player()
 
 func _draw():
 	if path != null:
