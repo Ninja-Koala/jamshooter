@@ -42,15 +42,29 @@ onready var projectile_offset = get_node("ProjectileSpawn").position.length()
 onready var hook_offset = get_node("HookSpawn").position.length()
 onready var dead_player_scene = preload("res://entities/DeadPlayer.tscn")
 onready var dead_scene = preload("res://entities/DeadScene.tscn")
+onready var progress_bar_scene = preload ("res://HealthBar.tscn")
+
+var healthbar
 
 func _ready():
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	hitpoints = 5
+	hitpoints = 10
+	
+	var progress_bar = progress_bar_scene.instance()
+	add_child(progress_bar)
+	var nodes = get_tree().get_nodes_in_group("healthbar")
+	
+	for node in nodes:
+		healthbar = node
+		healthbar.value = hitpoints
 
 func take_damage(damage, attacker = null):
 	if invincibility <= 0:
 		.take_damage(damage)
+		
+		healthbar.value-=damage
+		
 		invincibility = INVINCIBILITY_DURATION
 		if attacker != null:
 			var direction = (attacker.global_position - global_position).normalized()
