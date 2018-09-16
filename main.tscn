@@ -62,5 +62,6 @@ scale = Vector2( -1, 1 )
 position = Vector2( 320, 432 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+hasKey = false
 
 

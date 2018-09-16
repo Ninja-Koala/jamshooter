@@ -55,6 +55,7 @@ position = Vector2( 1386.76, 333.123 )
 position = Vector2( 320, 432 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+hasKey = false
 
 [node name="Door" parent="." index="2" instance=ExtResource( 4 )]
 
