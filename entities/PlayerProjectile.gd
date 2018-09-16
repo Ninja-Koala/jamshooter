@@ -25,15 +25,14 @@ func update_physics():
 	var collisions = collision_area.get_overlapping_bodies()
 	if collisions.size() != 0:
 		get_parent().remove_child(self)
-		
+
 		if collisions[0] is enemy_type:
 			collisions[0].take_damage(damage)
-	
+
 	collisions = collision_area.get_overlapping_areas()
-	
+
 	if collisions.size() != 0:
 		get_parent().remove_child(self)
-		
+
 		if collisions[0].get_parent() is enemy_type:
 			collisions[0].get_parent().take_damage(damage)
-	
