@@ -13,6 +13,7 @@ func try_hit_player():
 func get_path_to_player():
 	if player == null:
 		return []
+	
 	var parent = get_parent()
 	var path = navigation.get_simple_path(global_position, player.global_position, false)
 	var result = []

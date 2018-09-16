@@ -60,5 +60,5 @@ func enemy_process(delta):
 func spawn_body():
 	var body = .spawn_body()
 	if flipped:
-		body.flipped = true
+		body.flip()
 	return body
