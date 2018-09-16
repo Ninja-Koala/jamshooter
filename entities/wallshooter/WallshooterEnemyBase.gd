@@ -5,7 +5,7 @@ const GRAVITY = Vector2(50, 0)
 onready var floor_scan_bottom = get_node("Content/WallScanArea/bottom")
 onready var floor_scan_top = get_node("Content/WallScanArea/top")
 onready var content_node = get_node("Content")
-onready var projectile_scene = preload("res://entities/wallshooter/WallshooterProjectile.tscn")
+onready var projectile_scene = preload("res://entities/wallshooter/WallrunnerProjectile.tscn")
 
 var initialized = false
 
@@ -61,7 +61,7 @@ func spawn_body():
 		body.flip()
 	return body
 
-func shoot_at_player(projectile_offset, lifetime):
+func shoot_at_player(projectile_offset, lifetime, only_forward = true):
 	if player == null:
 		return false
 	
@@ -69,7 +69,7 @@ func shoot_at_player(projectile_offset, lifetime):
 	var projectile_position = projectile_offset.global_position
 	
 	# Nicht nach hinten schießen
-	if direction.dot(projectile_position - global_position) < 0:
+	if only_forward && direction.dot(projectile_position - global_position) < 0:
 		return false
 	
 	var projectile = projectile_scene.instance()

@@ -7,7 +7,7 @@ const MAX_VELOCITY = Vector2(50, 500)
 const SHOOT_TIME = 0.3
 const WAIT_TIME_BEFORE = 0.1
 const WAIT_TIME_AFTER = 0.3
-const PROJECTILE_LIFETIME = 2
+const PROJECTILE_LIFETIME = 1
 
 onready var projectile_offset = get_node("Content/ProjectileOffset")
 
@@ -21,6 +21,7 @@ func _ready():
 	hitpoints = 4
 	next_scene = preload("res://entities/wallshooter/Wallracer.tscn")
 	body_scene = preload("res://entities/wallshooter/DeadWallracer.tscn")
+	projectile_scene = preload("res://entities/wallshooter/WallracerProjectile.tscn")
 	respawn_time = 3
 
 func enemy_process(delta):
@@ -38,7 +39,7 @@ func enemy_process(delta):
 			wait_time -= delta
 			if wait_time <= 0:
 				# Schieß
-				var shot = shoot_at_player(projectile_offset, PROJECTILE_LIFETIME)
+				var shot = shoot_at_player(projectile_offset, PROJECTILE_LIFETIME, false)
 				
 				# Geschossen?
 				if shot:
