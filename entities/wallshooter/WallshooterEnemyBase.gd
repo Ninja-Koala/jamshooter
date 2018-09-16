@@ -5,6 +5,7 @@ const GRAVITY = Vector2(50, 0)
 onready var floor_scan_bottom = get_node("Content/WallScanArea/bottom")
 onready var floor_scan_top = get_node("Content/WallScanArea/top")
 onready var content_node = get_node("Content")
+onready var projectile_scene = preload("res://entities/wallshooter/WallshooterProjectile.tscn")
 
 var initialized = false
 
@@ -23,9 +24,6 @@ func enemy_process(delta):
 		flipped = content_node.get_global_transform()[0][0] < 0
 		if flipped:
 			physics.gravity *= -1
-			print("turned")
-		else:
-			print("not turned")
 		initialized = true
 	
 	# Gibt es noch Wand?
@@ -43,7 +41,6 @@ func enemy_process(delta):
 	
 	# Wenn nicht, umdrehen
 	if !found:
-		print("no wall")
 		direction = -direction
 		
 	# Laufe hoch/runter
@@ -60,5 +57,23 @@ func enemy_process(delta):
 func spawn_body():
 	var body = .spawn_body()
 	if flipped:
-		body.flipped = true
+		body.flip()
 	return body
+
+func shoot_at_player(projectile_offset, lifetime):
+	if player == null:
+		return false
+	
+	var direction = (player.global_position - global_position).normalized()
+	var projectile_position = projectile_offset.global_position
+	
+	# Nicht nach hinten schießen
+	if direction.dot(projectile_position - global_position) < 0:
+		return false
+	
+	var projectile = projectile_scene.instance()
+	projectile.direction = direction
+	projectile.position = projectile_position - get_parent().position
+	projectile.lifetime = lifetime
+	get_parent().add_child(projectile)
+	return true

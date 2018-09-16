@@ -79,6 +79,7 @@ func enemy_process(delta):
 				destroy()
 
 func _draw():
-	if path != null:
-		for p in path:
-			draw_circle(p - global_position, 5, Color(1, 0, 0, 1))
+	if DEBUG:
+		if path != null:
+			for p in path:
+				draw_circle(p - global_position, 5, Color(1, 0, 0, 1))

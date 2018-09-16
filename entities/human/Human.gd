@@ -22,7 +22,7 @@ func _ready():
 	next_scene = preload("res://entities/human/Zombie.tscn")
 	level = 1
 	respawn_time = 3
-	hitpoints = 10
+	hitpoints = 3
 	
 	physics.init(Vector2(ACCELERATION_X, 0), FRICTION, GRAVITY, 0, MAX_VELOCITY)
 

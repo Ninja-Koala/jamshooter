@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://entities/wallshooter/Wallrunner.gd" type="Script" id=1]
-[ext_resource path="res://sprites/bigger_wand_grabbler.png" type="Texture" id=2]
+[ext_resource path="res://entities/wallshooter/Wallracer.gd" type="Script" id=1]
+[ext_resource path="res://sprites/evil_wand_grabbler.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 

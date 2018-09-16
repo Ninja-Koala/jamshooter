@@ -21,23 +21,26 @@ func enemy_process(delta):
 	update()
 	
 	# Steuere den ersten Punkt an
+	var direction = null
 	if path != null && path.size() > 0:
 		var target = null
 		for p in path:
 			if (p - global_position).length_squared() > 2:
-				target = p
+				direction = (p - global_position).normalized()
 				break
 		
-		var direction = (target - global_position).normalized()
-		
-		# Fliege da hin
-		physics_fly(physics, direction)
-	else:
-		# Fliege direkt zum Spieler
-		var direction = (player.global_position - global_position).normalized()
-		physics_fly(physics, direction)
+	if direction == null:
+		if player != null:
+			# Fliege direkt zum Spieler
+			direction = (player.global_position - global_position).normalized()
+		else:
+			direction = Vector2(0, 0)
+	
+	# Fliege da hin
+	physics_fly(physics, direction)
 
 func _draw():
-	if path != null:
-		for p in path:
-			draw_circle(p - global_position, 5, Color(1, 0, 0, 1))
+	if DEBUG:
+		if path != null:
+			for p in path:
+				draw_circle(p - global_position, 5, Color(1, 0, 0, 1))

@@ -2,12 +2,12 @@ extends "res://entities/wallshooter/WallshooterEnemyBase.gd"
 
 const ACCELERATION_Y = 50
 const FRICTION = Vector2(10, 10)
-const MAX_VELOCITY = Vector2(50, 300)
+const MAX_VELOCITY = Vector2(50, 500)
 
-const SHOOT_TIME = 2
-const WAIT_TIME_BEFORE = 0.2
-const WAIT_TIME_AFTER = 0.8
-const PROJECTILE_LIFETIME = 0.2
+const SHOOT_TIME = 0.3
+const WAIT_TIME_BEFORE = 0.1
+const WAIT_TIME_AFTER = 0.3
+const PROJECTILE_LIFETIME = 2
 
 onready var projectile_offset = get_node("Content/ProjectileOffset")
 
@@ -20,7 +20,7 @@ func _ready():
 	
 	hitpoints = 4
 	next_scene = preload("res://entities/wallshooter/Wallracer.tscn")
-	body_scene = preload("res://entities/wallshooter/DeadWallrunner.tscn")
+	body_scene = preload("res://entities/wallshooter/DeadWallracer.tscn")
 	respawn_time = 3
 
 func enemy_process(delta):
