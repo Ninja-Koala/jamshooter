@@ -36,7 +36,10 @@ func enemy_process(delta):
 	
 	if direction == null:
 		# Direkten Weg zum Spieler nehmen
-		direction = player.global_position - global_position
+		if player != null:
+			direction = player.global_position - global_position
+		else:
+			direction = Vector2(0,0)
 	
 	# Bewege in diese Richtung
 	key_force = Vector2(sign(direction.x), 0)

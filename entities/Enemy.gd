@@ -5,11 +5,14 @@ onready var player = get_node("../../Player")
 onready var navigation = get_node("../Navigation")
 
 func try_hit_player():
-	if hit_area != null:
-		if hit_area.overlaps_body(player):
-			player.take_damage(1, self)
+	if player != null:
+		if hit_area != null:
+			if hit_area.overlaps_body(player):
+				player.take_damage(1, self)
 
 func get_path_to_player():
+	if player == null:
+		return []
 	var parent = get_parent()
 	var path = navigation.get_simple_path(global_position, player.global_position, false)
 	var result = []
