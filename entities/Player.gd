@@ -49,6 +49,8 @@ onready var dead_player_scene = preload("res://entities/DeadPlayer.tscn")
 onready var dead_scene = preload("res://entities/DeadScene.tscn")
 onready var progress_bar_scene = preload ("res://HealthBar.tscn")
 
+var sprite
+
 var healthbar
 
 func _ready():
@@ -63,6 +65,10 @@ func _ready():
 	for node in nodes:
 		healthbar = node
 		healthbar.value = hitpoints
+		
+	nodes = get_tree().get_nodes_in_group("player_sprite")
+	for node in nodes:
+		sprite = node
 
 func take_damage(damage, attacker = null):
 	if invincibility <= 0:
@@ -192,11 +198,11 @@ func _physics_process(delta):
 	invincibility -= delta
 	if invincibility > 0:
 		if int((invincibility * 100)) % 2 == 0:
-			modulate.a = 0.2
+			sprite.modulate.a = 0.2
 		else:
-			modulate.a = 1
+			sprite.modulate.a = 1
 	else:
-		modulate.a = 1
+		sprite.modulate.a = 1
 	
 	# Knockback zurücksetzen
 	knockback = Vector2(0, 0)

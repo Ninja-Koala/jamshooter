@@ -17,13 +17,16 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 hitpoints = 1
+hasKey = false
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="." index="1" groups=[
+"player_sprite",
+]]
 
 scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
