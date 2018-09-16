@@ -278,4 +278,6 @@ func draw_checkered_line(start, end, size, color):
 	
 func remove_hook():
 	get_parent().remove_child(get_parent().get_node("Hook"))
+	hook_active = false
 	update()
+	
