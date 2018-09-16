@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/Key.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/bat/Bat.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/wallshooter/Wallwalker.tscn" type="PackedScene" id=5]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/human/Human.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=7]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -96,7 +97,24 @@ position = Vector2( 1121.65, -321.936 )
 position = Vector2( 1049.88, -317.835 )
 scale = Vector2( -1, 1 )
 
-[node name="Player" parent="." index="1" instance=ExtResource( 6 )]
+[node name="Human" parent="Environment" index="14" instance=ExtResource( 6 )]
+
+position = Vector2( 820.22, 774.778 )
+
+[node name="Human2" parent="Environment" index="15" instance=ExtResource( 6 )]
+
+position = Vector2( 1283.72, 781.595 )
+
+[node name="Wallshooter11" parent="Environment" index="16" instance=ExtResource( 5 )]
+
+position = Vector2( 1313.26, 627.093 )
+
+[node name="Wallshooter12" parent="Environment" index="17" instance=ExtResource( 5 )]
+
+position = Vector2( 795.227, 647.542 )
+scale = Vector2( -1, 1 )
+
+[node name="Player" parent="." index="1" instance=ExtResource( 7 )]
 
 position = Vector2( -86.7527, 525.866 )
 z_index = 10
