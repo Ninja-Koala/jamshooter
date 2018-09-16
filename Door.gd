@@ -17,7 +17,7 @@ func _physics_process(delta):
 
 func update_physics():
 	if locked:
-		if not get_parent().get_node("Key"):
+		if not get_parent().has_node("Key"):
 			locked=false
 		else:
 			if not has_node("Lock"):
