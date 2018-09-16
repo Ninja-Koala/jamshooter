@@ -60,6 +60,5 @@ hasKey = false
 position = Vector2( 1629.88, 130.352 )
 scale = Vector2( 8, 8 )
 _sections_unfolded = [ "Transform" ]
-locked = true
 
 

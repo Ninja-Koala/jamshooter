@@ -17,12 +17,9 @@ func _physics_process(delta):
 
 func update_physics():
 	if locked:
-		print("1.")
 		if not get_parent().get_node("Key"):
 			locked=false
-			print("1.1.")
 		else:
-			print("1.2.")
 			if not get_node("Lock"):
 				var lock_obj = lock_scene.instance()
 				add_child(lock_obj)

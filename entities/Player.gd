@@ -121,13 +121,8 @@ func _input(event):
 				update()
 
 func _physics_process(delta):
-<<<<<<< HEAD
-	if hasKey:
-		print("Has Key")
-=======
 	# Schusszeit runterzählen
 	time_until_shot -= delta
->>>>>>> d88457500065e614b7ff2863d8721ee5ba11cdbd
 	
 	# Projektile
 	if shoot_button_pressed && time_until_shot <= 0:

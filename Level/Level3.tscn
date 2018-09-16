@@ -5,7 +5,7 @@
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
@@ -59,6 +59,7 @@ position = Vector2( 1046.59, 239.473 )
 position = Vector2( -84.7288, 404.882 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+hasKey = false
 
 [node name="Door" parent="." index="2" instance=ExtResource( 4 )]
 

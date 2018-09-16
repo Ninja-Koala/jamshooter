@@ -49,7 +49,6 @@ func enemy_process(delta):
 	# Stillstand?
 	if velocity.length_squared() == 0:
 		still_time += delta
-		print(direction.x)
 	else:
 		still_time = 0
 	
