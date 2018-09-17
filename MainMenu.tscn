@@ -29,7 +29,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Splash" type="TextureRect"]
+[node name="Splash" type="TextureRect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -147,6 +147,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_hover = Color( 1, 0.588235, 0.588235, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.392157, 0.392157, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -155,7 +157,7 @@ text = "Start"
 flat = true
 align = 1
 script = ExtResource( 3 )
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" index="1"]
 
@@ -174,6 +176,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_hover = Color( 1, 0.588235, 0.588235, 1 )
+custom_colors/font_color_pressed = Color( 0.843137, 0.392157, 0.392157, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -182,6 +186,6 @@ text = "Quit"
 flat = true
 align = 1
 script = ExtResource( 4 )
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 
