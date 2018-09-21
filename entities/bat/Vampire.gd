@@ -3,6 +3,7 @@ extends "res://entities/bat/BatEnemyBase.gd"
 const ACCELERATION = Vector2(50, 50)
 const MAX_VELOCITY = Vector2(150, 150)
 const FRICTION = Vector2(30, 30)
+export var max_velocity = 150 setget set_velo
 
 var path
 
@@ -43,3 +44,6 @@ func _draw():
 		if path != null:
 			for p in path:
 				draw_circle(p - global_position, 5, Color(1, 0, 0, 1))
+				
+func set_velo(value):
+	MAX_VELOCITY = Vector2(value,value)

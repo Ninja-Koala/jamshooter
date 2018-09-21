@@ -9,7 +9,7 @@
 [ext_resource path="res://entities/human/Zombie.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
@@ -80,6 +80,5 @@ position = Vector2( 992, 656 )
 position = Vector2( 56, -144 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
-hasKey = false
 
 

@@ -7,7 +7,7 @@
 [ext_resource path="res://entities/Spider_boss.gd" type="Script" id=5]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
