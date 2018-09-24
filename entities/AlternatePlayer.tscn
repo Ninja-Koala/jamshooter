@@ -991,7 +991,7 @@ tracks/21/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 31, 44 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -1019,7 +1019,7 @@ __meta__ = {
 
 [node name="hip" type="Sprite" parent="base" index="0"]
 
-position = Vector2( 0.11866, 12.9802 )
+position = Vector2( 0.11866, 13.9512 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 offset = Vector2( -0.029665, -3.47269 )
@@ -1027,8 +1027,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="body" type="Sprite" parent="base/hip" index="0"]
 
-position = Vector2( -0.0427189, -1.74163 )
-rotation = 0.178965
+position = Vector2( -0.0427186, -1.09032 )
+rotation = 0.238111
 texture = ExtResource( 4 )
 offset = Vector2( 0.0130539, -1.88236 )
 _sections_unfolded = [ "Transform" ]
@@ -1039,7 +1039,7 @@ __meta__ = {
 
 [node name="head" type="Sprite" parent="base/hip/body" index="0"]
 
-position = Vector2( 0.0700183, -7.76613 )
+position = Vector2( 0.0449503, -7.76389 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.0252838, 6.37658 )
 _sections_unfolded = [ "Transform" ]
@@ -1057,8 +1057,8 @@ __meta__ = {
 
 [node name="arm left" type="Sprite" parent="base/hip/body" index="1"]
 
-position = Vector2( -4.34339, -7.4019 )
-rotation = -0.689454
+position = Vector2( -2.6443, -7.39807 )
+rotation = 0.526178
 scale = Vector2( 1, 1 )
 texture = ExtResource( 6 )
 offset = Vector2( 3.49048, 5.49788 )
@@ -1077,8 +1077,8 @@ __meta__ = {
 
 [node name="arm right" type="Sprite" parent="base/hip/body" index="2"]
 
-position = Vector2( 1.99313, -7.24616 )
-rotation = 0.189743
+position = Vector2( 1.98122, -7.41297 )
+rotation = -0.913652
 scale = Vector2( 1, 1 )
 z_index = -1
 texture = ExtResource( 7 )
@@ -1108,8 +1108,8 @@ softness = 0.0
 
 [node name="leg_left" type="Sprite" parent="base/hip/leg_left_bone" index="0"]
 
-position = Vector2( -41.4494, 16.8549 )
-rotation = 1.15088
+position = Vector2( 44.0147, 24.0991 )
+rotation = -0.279652
 scale = Vector2( -24.124, 23.1746 )
 texture = ExtResource( 8 )
 offset = Vector2( 3.23815, -5.24096 )
@@ -1139,10 +1139,10 @@ softness = 0.0
 
 [node name="leg right" type="Sprite" parent="base/hip/leg_left_bone2" index="0"]
 
-position = Vector2( 42.0238, 45.6233 )
-rotation = 0.150443
+position = Vector2( -55.3606, 30.6878 )
+rotation = 0.911055
 scale = Vector2( 23.0769, 26.0617 )
-z_index = -2
+z_index = -1
 texture = ExtResource( 9 )
 offset = Vector2( -3.25651, -5.22269 )
 _sections_unfolded = [ "Transform", "Z Index" ]
