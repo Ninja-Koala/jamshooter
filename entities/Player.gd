@@ -74,6 +74,7 @@ func _ready():
 func take_damage(damage, attacker = null):
 	if invincibility <= 0:
 		.take_damage(damage)
+		$hit.play()
 		
 		healthbar.value-=damage
 		
@@ -85,6 +86,7 @@ func take_damage(damage, attacker = null):
 func heal(damage):
 	hitpoints = min(hitpoints + damage, MAX_HEALTH)
 	healthbar.value = hitpoints
+	$heal.play()
 
 func die():
 	var hook = get_parent().get_node("Hook")
@@ -145,6 +147,7 @@ func _physics_process(delta):
 		projectile.direction = (projectile.position - position).normalized()
 		projectile.update_physics()
 		time_until_shot = SHOOT_DURATION
+		$shoot.play()
 		print("bang")
 	
 	# Hook
