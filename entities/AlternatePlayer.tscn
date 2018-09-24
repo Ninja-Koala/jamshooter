@@ -1018,7 +1018,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("hip/body/arm right:position")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -1030,7 +1030,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("hip/body/arm right:rotation_degrees")
-tracks/3/interp = 1
+tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
@@ -1054,7 +1054,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("hip/body:rotation_degrees")
-tracks/5/interp = 1
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
@@ -1066,7 +1066,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("hip/body/head:position")
-tracks/6/interp = 1
+tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
@@ -1078,7 +1078,7 @@ tracks/6/keys = {
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("hip/body/head:rotation_degrees")
-tracks/7/interp = 1
+tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
@@ -1138,7 +1138,7 @@ tracks/11/keys = {
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("hip:position")
-tracks/12/interp = 1
+tracks/12/interp = 2
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
@@ -1150,7 +1150,7 @@ tracks/12/keys = {
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("hip:rotation_degrees")
-tracks/13/interp = 1
+tracks/13/interp = 2
 tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
@@ -1162,7 +1162,7 @@ tracks/13/keys = {
 }
 tracks/14/type = "value"
 tracks/14/path = NodePath("hip/body/arm left:position")
-tracks/14/interp = 1
+tracks/14/interp = 2
 tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
@@ -1174,7 +1174,7 @@ tracks/14/keys = {
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath("hip/body/arm left:rotation_degrees")
-tracks/15/interp = 1
+tracks/15/interp = 2
 tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
@@ -1266,7 +1266,7 @@ __meta__ = {
 
 [node name="hip" type="Sprite" parent="base" index="0"]
 
-position = Vector2( 0.11866, 13.8908 )
+position = Vector2( 0.11866, 15.7207 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 offset = Vector2( -0.029665, -3.47269 )
@@ -1274,8 +1274,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="body" type="Sprite" parent="base/hip" index="0"]
 
-position = Vector2( -0.0427189, -1.59033 )
-rotation = -1.20779
+position = Vector2( -0.0427189, -1.38183 )
+rotation = 0.543165
 texture = ExtResource( 4 )
 offset = Vector2( 0.0130539, -1.88236 )
 _sections_unfolded = [ "Transform" ]
@@ -1287,7 +1287,7 @@ __meta__ = {
 [node name="head" type="Sprite" parent="base/hip/body" index="0"]
 
 position = Vector2( -0.0122299, -8.25893 )
-rotation = 0.371963
+rotation = -0.282204
 texture = ExtResource( 5 )
 offset = Vector2( 0.0252838, 6.37658 )
 _sections_unfolded = [ "Transform" ]
@@ -1306,7 +1306,7 @@ __meta__ = {
 [node name="arm left" type="Sprite" parent="base/hip/body" index="1"]
 
 position = Vector2( -3.50001, -7.40002 )
-rotation = 2.50275
+rotation = 3.19561
 scale = Vector2( 1, 1 )
 texture = ExtResource( 6 )
 offset = Vector2( 3.49048, 5.49788 )
@@ -1326,7 +1326,7 @@ __meta__ = {
 [node name="arm right" type="Sprite" parent="base/hip/body" index="2"]
 
 position = Vector2( 3.48, -7.4 )
-rotation = -3.22621
+rotation = -2.73734
 scale = Vector2( 1, 1 )
 texture = ExtResource( 7 )
 offset = Vector2( -3.46333, 5.5463 )
@@ -1355,7 +1355,8 @@ softness = 0.0
 
 [node name="leg_left" type="Sprite" parent="base/hip/leg_left_bone" index="0"]
 
-position = Vector2( -54, 42 )
+position = Vector2( -54, 34.7522 )
+rotation = 0.0297521
 scale = Vector2( 24.124, 23.1746 )
 texture = ExtResource( 8 )
 offset = Vector2( 3.23815, -5.24096 )
@@ -1385,7 +1386,8 @@ softness = 0.0
 
 [node name="leg right" type="Sprite" parent="base/hip/leg_left_bone2" index="0"]
 
-position = Vector2( 51, 47 )
+position = Vector2( 51, 38.8493 )
+rotation = -0.0137557
 scale = Vector2( 23.0769, 26.0617 )
 z_index = -1
 texture = ExtResource( 9 )
