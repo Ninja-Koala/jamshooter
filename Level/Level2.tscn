@@ -1,13 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/human/Human.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/human/Zombie.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/bat/Bat.tscn" type="PackedScene" id=4]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://DejaVuSerif.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=7]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="Environment" type="Node2D" parent="." index="0"]
 
@@ -48,17 +57,39 @@ position = Vector2( -16.4044, 397.806 )
 
 position = Vector2( 876.334, 102.527 )
 
-[node name="Player" parent="." index="1" instance=ExtResource( 5 )]
-
-position = Vector2( -23.0865, 17.8236 )
-z_index = 10
-_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
-hasKey = false
-
-[node name="Door" parent="." index="2" instance=ExtResource( 6 )]
+[node name="Door" parent="Environment" index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 1629.88, 130.352 )
 scale = Vector2( 8, 8 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Keycode" type="Label" parent="Environment" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -110.0
+margin_top = -7.0
+margin_bottom = 31.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Regret"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 7 )]
+
+position = Vector2( -23.0865, 17.8236 )
+z_index = 10
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 

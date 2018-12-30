@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/human/Zombie.tscn" type="PackedScene" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://entities/wallshooter/Wallwalker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/Key.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=6]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://font32.tres" type="DynamicFont" id=7]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -46,6 +47,7 @@ position = Vector2( 117.16, 267.793 )
 [node name="Vampire" parent="Environment" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 953.506, 258.369 )
+max_velocity = 150
 
 [node name="Wallshooter" parent="Environment" index="3" instance=ExtResource( 4 )]
 
@@ -66,11 +68,34 @@ position = Vector2( -287.927, 448.289 )
 scale = Vector2( 8, 8 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 7 )]
+[node name="Label" type="Label" parent="Environment" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 533.0
+margin_right = 103.0
+margin_bottom = 571.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Injury"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 8 )]
 
 position = Vector2( -26.8962, 460.568 )
 z_index = 10
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
-hasKey = false
 
 

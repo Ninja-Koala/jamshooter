@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/bat/Bat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://font32.tres" type="DynamicFont" id=4]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -54,17 +55,40 @@ position = Vector2( 204.56, 222.817 )
 
 position = Vector2( 1046.59, 239.473 )
 
-[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
-
-position = Vector2( -84.7288, 404.882 )
-z_index = 10
-_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
-hasKey = false
-
-[node name="Door" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Door" parent="Environment" index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 1629.88, 383.887 )
 scale = Vector2( 8, 8 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Label" type="Label" parent="Environment" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -117.0
+margin_top = 395.0
+margin_right = 33.0
+margin_bottom = 433.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Foreseen"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 5 )]
+
+position = Vector2( -84.7288, 404.882 )
+z_index = 10
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 

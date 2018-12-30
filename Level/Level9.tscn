@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/bat/Vampire.tscn" type="PackedScene" id=3]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://font32.tres" type="DynamicFont" id=4]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -48,7 +49,31 @@ locked = false
 position = Vector2( -392.529, 515.277 )
 max_velocity = 100
 
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+[node name="Label" type="Label" parent="Environment" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -267.0
+margin_top = 482.0
+margin_right = -135.0
+margin_bottom = 520.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+text = "Purpose"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 5 )]
 
 position = Vector2( -81.2484, 514.156 )
 z_index = 10
