@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const DEBUG = true
+const DEBUG = false
 const FLOOR_NORMAL = Vector2(0, -1)
 
 onready var physics_type = preload("res://entities/PhysicsSettings.gd")

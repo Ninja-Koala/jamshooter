@@ -16,7 +16,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=2]
 
 content_margin_left = 10.0
 content_margin_right = -1.0
@@ -24,7 +24,7 @@ content_margin_top = 2.0
 content_margin_bottom = -1.0
 _sections_unfolded = [ "Content Margin" ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 
 size = 32
 use_mipmaps = false
@@ -209,8 +209,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 max_length = 16
 focus_mode = 2
 context_menu_enabled = false
